@@ -76,8 +76,8 @@ console.log('listening localhost:4000');
 // Define our db creds
 var db = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    database: 'recruitment'
+    user: 'apirecruitment__root',
+    database: 'apirecruitment_recruitment'
 })
  
 // Log any errors connected to the db
