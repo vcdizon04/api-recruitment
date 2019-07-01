@@ -77,6 +77,7 @@ console.log('listening localhost:4000');
 var db = mysql.createConnection({
     host: 'localhost',
     user: 'apirecruitment__root',
+    password: '#(*-0.X=v!7)',
     database: 'apirecruitment_recruitment'
 })
  
