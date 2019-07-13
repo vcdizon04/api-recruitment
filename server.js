@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 // you can pass the parameter in the command line. e.g. node static_server.js 3000
 const port = process.argv[2] || 9000;
+const AdmZip = require('adm-zip');
 
 // maps file extention to MIME types
 const mimeType = {
@@ -76,9 +77,8 @@ console.log('listening localhost:4000');
 // Define our db creds
 var db = mysql.createConnection({
     host: 'localhost',
-    user: 'apirecruitment__root',
-    password: '#(*-0.X=v!7)',
-    database: 'apirecruitment_recruitment'
+    user: 'root',
+    database: 'recruitment'
 })
  
 // Log any errors connected to the db
@@ -97,7 +97,6 @@ io.sockets.on('connection', function(socket){
 
     db.query('SELECT * FROM job_openings', (err, data) =>{
         if(!err){
-          console.log(data);
           jobOpenings = data;
           // socket.emit('initial notes', data)
           socket.emit('initial-job-openings', data)
@@ -186,11 +185,102 @@ io.sockets.on('connection', function(socket){
         })
     })
 
+    socket.on('add-stage', function(data, res) {
+        db.query(`INSERT INTO stages (stage) VALUES ('${data}')`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            console.log(results)
+            io.sockets.emit('new-stage', data)
+            res(results);
+
+        })
+    })
+    socket.on('get-stages', function(data, res) {
+        db.query('SELECT * FROM stages', (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            console.log(results)
+            res(results);
+
+        })
+    })
+
+    socket.on('get-candidate', function(id, res) {
+        db.query(`SELECT * FROM candidates WHERE id = ${id}`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            res(results);
+
+        })
+    })
+
+    socket.on('get-departments', function(id, res) {
+        db.query(`SELECT * FROM departments`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            res(results);
+
+        })
+    })
+
+    socket.on('add-department', function(department, res) {
+        db.query(`INSERT INTO departments (title) VALUES ('${department}')`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            res(results);
+        })
+    })
+
+    socket.on('delete-department', function(id, res) {
+        db.query(`DELETE FROM departments WHERE id = ${id}`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            res(results);
+        })
+    })
+
+    socket.on('download-profile', function(data,res) {
+        var zip = new AdmZip();
+        // add local file
+        data.files.forEach(element => {
+            zip.addLocalFile(element.value);
+        });
+        // get everything as a buffer
+        var willSendthis = zip.toBuffer();
+        // or write everything to disk
+        zip.writeZip(/*target file name*/`downloads/${data.fileName.replace(/ /g, '_')}.zip`);
+        res(`downloads/${data.fileName.replace(/ /g, '_')}.zip`);
+    })
+
+    
+    socket.on('log-in', function(data, res){
+        console.log(data);
+        db.query(`SELECT * FROM employee WHERE email = '${data.email}' AND password = '${data.password}'`, (err, results) => {
+            console.log(results)
+            if(err) {
+                console.log(err)
+                res({error: err})
+            } else {
+                if(results.length > 0) {
+                    res(results)
+                } else {
+                    res({error: 'Login in Error'})
+                }
+            }
+        })
+    })
+
     socket.on('add-employee', function(data, res){
 
         const dateNow = new Date().getTime();
         console.log(data, dateNow);
-        db.query(`INSERT INTO employee (id, created_on, status, name, designation, department, employment_type, details) VALUES (NULL, ${dateNow}, '${data.status}', '${data.firstName} ${data.lastName}', '${data.designation}', '${data.department}',  '${data.employeeType}', '${JSON.stringify(data.details)}')`, (err, results) => {
+        db.query(`INSERT INTO employee (id, created_on, status, name, designation, department, employment_type, details, email, level) VALUES (NULL, ${dateNow}, '${data.status}', '${data.firstName} ${data.lastName}', '${data.designation}', '${data.department}',  '${data.employeeType}', '${JSON.stringify(data.details)}', '${data.email}', 1)`, (err, results) => {
             if(err) {
                 console.log(err)
             }
@@ -214,7 +304,7 @@ io.sockets.on('connection', function(socket){
         const dateNow = new Date().getTime();
 
         console.log(data, dateNow);
-        db.query(`INSERT INTO candidates (id, created_on, job_opening_id, stage, rating, details, interviews, to_dos) VALUES (NULL, ${dateNow}, ${data.job_opening_id}, '${data.stage}', 0.00, '${JSON.stringify(data.details)}', '[]', '[]')`, (err, results) => {
+        db.query(`INSERT INTO candidates (id, created_on, job_opening_id, job_title, stage, rating, details, interviews, to_dos) VALUES (NULL, ${dateNow}, ${data.job_opening_id}, '${data.job_title}', '${data.stage}', 0.00, '${JSON.stringify(data.details)}', '[]', '[]')`, (err, results) => {
             if(err) {
                 console.log(err)
             }
