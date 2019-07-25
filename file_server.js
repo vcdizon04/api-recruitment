@@ -59,4 +59,33 @@ app.post('/api/upload', multipartMiddleware, async (req, res) => {
     // });
 });
 
+app.post('/api/upload/missing', multipartMiddleware, async (req, res) => {
+    const files = req.files.uploads;
+    const data = JSON.parse(req.body.data);
+    const fields = data.missing_fields;
+    const fixName = (filename) => {
+        const split = filename.split('fakepath\\')
+        return split[1];
+    }
+    fields.forEach(element => {
+        if(element.type == 'file') {
+           const index = files.findIndex(value => value.originalFilename == fixName(element.value));
+           if(index > -1) {
+            element.value = files[index].path
+           }
+        }
+    });
+    db.query(`UPDATE candidates SET details = '${JSON.stringify([...data.completed_fields, ...data.missing_fields])}' WHERE id = ${data.candidate_id}`, (err, results) => {
+        if(err) {
+            console.log(err)
+        }
+        res.json(data);
+    })
+
+
+    // res.json({
+    //     'message': 'File uploaded succesfully.'
+    // });
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

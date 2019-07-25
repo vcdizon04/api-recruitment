@@ -185,6 +185,18 @@ io.sockets.on('connection', function(socket){
         })
     })
 
+    socket.on('add-uid', function(id, res) {
+        const uid = uuidv4();
+        db.query(`UPDATE candidates SET uid = '${uid}' WHERE candidates.id = ${id};`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            console.log(results)
+            res({uid: uid});
+
+        })
+    })
+
     socket.on('add-stage', function(data, res) {
         db.query(`INSERT INTO stages (stage) VALUES ('${data}')`, (err, results) => {
             if(err) {
@@ -198,6 +210,17 @@ io.sockets.on('connection', function(socket){
     })
     socket.on('get-stages', function(data, res) {
         db.query('SELECT * FROM stages', (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            console.log(results)
+            res(results);
+
+        })
+    })
+
+    socket.on('get-candidate-by-uid', function(uid, res) {
+        db.query(`SELECT * FROM candidates WHERE uid = '${uid}'`, (err, results) => {
             if(err) {
                 console.log(err)
             }
