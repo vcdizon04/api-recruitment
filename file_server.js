@@ -45,7 +45,7 @@ app.post('/api/upload', multipartMiddleware, async (req, res) => {
     });
     const dateNow = new Date().getTime();
 
-    db.query(`INSERT INTO candidates (id, created_on, job_opening_id, job_title, stage, rating, details, interviews, to_dos, status, comments) VALUES (NULL, ${dateNow}, ${data.job_opening_id}, '${data.job_title}', '${data.stage}', 0.00, '${JSON.stringify(data.details)}', '[]', '[]', '', '')`, (err, results) => {
+    db.query(`INSERT INTO candidates (id, created_on, job_opening_id, job_title, stage, rating, details, interviews, to_dos, status, comment) VALUES (NULL, ${dateNow}, ${data.job_opening_id}, '${data.job_title}', '${data.stage}', 0.00, '${JSON.stringify(data.details)}', '[]', '[]', '', '')`, (err, results) => {
         if(err) {
             console.log(err)
         }
