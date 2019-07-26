@@ -102,9 +102,9 @@ app.get('/mailer', (req, res) => {
         subject: "Hello ✔", // Subject line
         text: "Hello world?", // plain text body
         html: "<b>Hello world?</b>" // html body
-      }).then(res => {
-          console.log(res);
-          res.json(res)
+      }).then(result => {
+          console.log(result);
+          res.json(result)
 
       }).catch(err => {
           console.log(err);
