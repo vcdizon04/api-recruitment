@@ -80,7 +80,7 @@ app.post('/api/upload/missing', multipartMiddleware, async (req, res) => {
 
 });
 
-api.get('/mailer', (req, res) => {
+app.get('/mailer', (req, res) => {
     var transporter = nodemailer.createTransport({
         host: 'localhost',
         port: 25,
