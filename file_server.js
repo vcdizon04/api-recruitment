@@ -93,9 +93,22 @@ app.get('/mailer', (req, res) => {
           res.json(error);
         } else {
           console.log("Server is ready to take our messages");
-          res.json(success)
         }
       });
+
+      transporter.sendMail({
+        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        to: "vcdizon04@gmail.com", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>" // html body
+      }).then(res => {
+          console.log(res);
+          res.json(res)
+
+      }).catch(err => {
+          console.log(err);
+      })
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
