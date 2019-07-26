@@ -5,6 +5,7 @@ const port = 8000;
 const bodyParser = require("body-parser");
 var mysql = require('mysql');
 const multipart = require('connect-multiparty');
+const nodemailer = require('nodemailer');
 const multipartMiddleware = multipart({
     uploadDir: './uploads',
     
@@ -77,6 +78,24 @@ app.post('/api/upload/missing', multipartMiddleware, async (req, res) => {
         res.json(data);
     });
 
+});
+
+api.get('/mailer', (req, res) => {
+    var transporter = nodemailer.createTransport({
+        host: 'localhost',
+        port: 25,
+        secure: false
+       });
+
+       transporter.verify(function(error, success) {
+        if (error) {
+          console.log(error);
+          res.json(error);
+        } else {
+          console.log("Server is ready to take our messages");
+          res.json(success)
+        }
+      });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
