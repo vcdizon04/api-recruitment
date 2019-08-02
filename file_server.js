@@ -99,10 +99,10 @@ app.post('/mailer', function(req, res) {
 
       transporter.sendMail({
         from: '"Recruitment" <recruitment@aspiremanning.com>', // sender address
-        to: "vcdizon04@gmail.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>" // html body
+        to: boyd.email, // list of receivers
+        subject: body.subject || '', // Subject line
+        // text: "Hello world?", // plain text body
+        html: body.message // html body
       }).then(result => {
           console.log(result);
           res.json(result)
