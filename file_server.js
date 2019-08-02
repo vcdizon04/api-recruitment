@@ -99,7 +99,7 @@ app.post('/mailer', function(req, res) {
 
       transporter.sendMail({
         from: '"Recruitment" <recruitment@aspiremanning.com>', // sender address
-        to: boyd.email, // list of receivers
+        to: body.email, // list of receivers
         subject: body.subject || '', // Subject line
         // text: "Hello world?", // plain text body
         html: body.message // html body
