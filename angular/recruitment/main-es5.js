@@ -349,7 +349,7 @@ module.exports = "<div id=\"wrapper\">\r\n  \r\n<app-sidebar></app-sidebar>\r\n\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\">\r\n    <!-- Modal -->\r\n<div class=\"modal fade\" id=\"modalAddStage\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h5 class=\"modal-title\" id=\"exampleModalLabel\">Please Enter Stage Title</h5>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <input [(ngModel)]=\"stageTitle\" type=\"text\" class=\"form-control\">\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n          <button (click)=\"addStage()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Add</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"modal fade\" id=\"modalAddField\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n      <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h5 class=\"modal-title\" id=\"exampleModalLabel\">Add Field</h5>\r\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <div class=\"mb-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-2\">\r\n                    <p class=\"d-inline m-0 field-label\"> Title</p>\r\n                </div>\r\n                <div class=\"col-10\">\r\n                  <input [(ngModel)]=\"field.fieldTitle\" type=\"text\" class=\"form-control\">\r\n                </div>\r\n              </div>\r\n            </div>\r\n           <div class=\"mb-4\">\r\n             <div class=\"row\">\r\n               <div class=\"col-2\">\r\n                 <p class=\"d-inline m-0 field-label\"> Type</p>\r\n               </div>\r\n               <div class=\"col-10\">\r\n                  <select [(ngModel)]=\"field.fieldType\" class=\"custom-select custom-select\">\r\n                      <option value=\"text\">\r\n                        Text\r\n                      </option>\r\n                      <option value=\"file\">\r\n                        File\r\n                      </option>\r\n                  </select>\r\n               </div>\r\n             </div>\r\n             \r\n           </div>\r\n            <div>\r\n                <div class=\"row\">\r\n                  <div class=\"col-2\"></div>\r\n                  <div class=\"col-10\">\r\n                      <input [(ngModel)]=\"field.isRequired\" class=\"mr-2\" type=\"checkbox\">\r\n                      <p class=\"d-inline m-0\">Required Field</p>\r\n                  </div>\r\n                </div>\r\n            </div> \r\n\r\n          </div>\r\n          <div class=\"modal-footer\">\r\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n            <button (click)=\"addField()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Add</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  <app-sidebar></app-sidebar>\r\n  <!-- Content Wrapper -->\r\n  <div id=\"content-wrapper\" class=\"d-flex flex-column\">\r\n\r\n    <!-- Main Content -->\r\n    <div id=\"content\">\r\n      <app-nav-bar></app-nav-bar>\r\n         <div class=\"container-fluid\">\r\n            <ul class=\"recruitment-step-progress p-0\">\r\n                <li class=\"{{currentStep == 1 ? 'active' : 'not-active'}}\"><span class=\"step-number\">1</span><span class=\"step-content\">Job description</span></li>\r\n                <li class=\"{{currentStep == 2 ? 'active' : 'not-active'}}\"><span class=\"step-number\">2</span><span class=\"step-content\">Hiring workflow</span>\r\n                </li>\r\n                <li class=\"{{currentStep == 3 ? 'active' : 'not-active'}}\"><span class=\"step-number\">3</span><span class=\"step-content\">Job information</span>\r\n                </li>\r\n                <li class=\"{{currentStep == 4 ? 'active' : 'not-active'}}\"><span class=\"step-number\">4</span><span class=\"step-content\">Basic information</span>\r\n                </li>\r\n                <!-- <li class=\"{{currentStep == 5 ? 'active' : 'not-active'}}\"><span class=\"step-number\">5</span><span class=\"step-content\">Question set</span></li> -->\r\n              </ul>\r\n\r\n             <div *ngIf=\"currentStep == 1\">\r\n                <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Job information</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"mb-4\">\r\n                          <p class=\"mb-1\">Position Title</p>\r\n                          <input [(ngModel)]=\"job.job_description.position_title\" type=\"text\">\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <p class=\"mb-1\">Opening Description</p>\r\n                          <editor apiKey=\"w1avmrtxbk66oqxy9zhv3923hk1whon1eepsjtimqkcubcig\" [(ngModel)]=\"job.opening_description\"  [init]=\"{menubar:false,statusbar: false}\"></editor>\r\n                      </div>\r\n        \r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left \"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n             </div>  \r\n              <div [hidden]=\"currentStep !== 2\">\r\n                <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Hiring Stage</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"alert alert-primary\" role=\"alert\">\r\n                          Stages below reflect the steps in your hiring process. Coordinator of a stage typically schedules interviews, collects evaluation from interviewers and communicates with the candidate.\r\n                      </div>\r\n                      <div class=\"mb-2 clearfix\">\r\n                          <button data-toggle=\"modal\" data-target=\"#modalAddStage\" class=\"btn btn-primary btn float-right\"> \r\n                             <i class=\"mr-1 fa fa-plus\"></i> Add Stage \r\n                            </button>\r\n                        </div>\r\n                      <div class=\"mb-4\">\r\n                        <!-- <div class=\"well\" style=\"max-height: 300px;overflow: auto;\"> -->\r\n                          <ul id=\"sortable\" class=\"list-group checked-list-box\">\r\n                            <!-- <ngx-sortable listStyle=\"listStyle\" [items]=\"items\" [name]=\"'Stages'\" (listSorted)=\"listSorted($event)\" > -->\r\n                                <!-- <ng-template let-item> -->\r\n                                    <li  *ngFor=\"let stage of stages\" class=\"list-group-item mb-2\" >\r\n                                 \r\n                                        <input [(ngModel)]=\"stage.isChecked\" class=\"mr-2\" type=\"checkbox\" id=\"gridCheck\">\r\n                                        <p>{{stage.text}}</p>\r\n                                    </li>\r\n                                <!-- </ng-template> -->\r\n                            <!-- </ngx-sortable> -->\r\n                          </ul>\r\n                        <!-- </div> -->\r\n\r\n   \r\n                      </div>\r\n        \r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left\"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n             </div> \r\n\r\n             <div [hidden]=\"currentStep != 3\">\r\n                <div class=\"card shadow mb-4 job-information\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Job information</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Department</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <select [(ngModel)]=\"job.job_information.department\" class=\"custom-select custom-select\">\r\n                                    <option *ngFor=\"let department of departments\" [value]=\"department.title\">\r\n                                      {{department.title}}\r\n                                    </option>\r\n                                  </select>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Employment Type</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <select [(ngModel)]=\"job.job_information.employment_type\" class=\"custom-select custom-select\">\r\n                                    <option value=\"Full Time\">Full Time</option>\r\n                                    <option value=\"Part Time\">Part Time</option>\r\n                                    <option value=\"On Contract\">On Contract</option>\r\n                                    <option value=\"Temporary\">Temporary</option>\r\n                                    <option value=\"Trainee\">Trainee</option>\r\n                                  </select>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4\">\r\n  \r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <input [(ngModel)]=\"job.job_information.isRemoteOption\" class=\"mr-2\" type=\"checkbox\">\r\n                                <p class=\"d-inline m-0\">Remote working is an option for this opening</p>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Minimum Experience</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <select [(ngModel)]=\"job.job_information.minimum_experience\" class=\"custom-select custom-select\">\r\n                                    <option value=\"Fresher\">Fresher</option>\r\n                                    <option value=\"1 - 3 Year\">1 - 3 Year</option>\r\n                                    <option value=\"3 - 5 Years\">3 - 5 Years</option>\r\n                                    <option value=\"5 - 7 Years\">5 - 7 Years</option>\r\n                                    <option value=\"7 - 10 Years\">7 - 10 Years</option>\r\n                                    <option value=\"Above 10 Years\">Above 10 Years</option>\r\n                                  </select>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Submission Deadline</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                               <input [(ngModel)]=\"job.job_information.submission_deadline\" id=\"datepicker\" width=\"276\">\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Location</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                               <input [(ngModel)]=\"job.job_information.location\" type=\"text\" class=\"form-control\">\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Number of Vacancy</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                               <input [(ngModel)]=\"job.job_information.number_of_vacancy\" type=\"number\" class=\"form-control\">\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left \"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button>\r\n                      </div>\r\n                     \r\n                    </div>\r\n                  </div>\r\n             </div>  \r\n\r\n             <div [hidden]=\"currentStep != 4\">\r\n                <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Candidate Basic Information</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"alert alert-primary\" role=\"alert\">\r\n                        The first 3 fields (Name, Email and Upload CV) are mandatory and will be displayed in candidate application form.\r\n                      </div>\r\n                      <div class=\"mb-2 clearfix\">\r\n                          <button data-toggle=\"modal\" data-target=\"#modalAddField\" class=\"btn btn-primary btn float-right\"> \r\n                             <i class=\"mr-1 fa fa-plus\"></i> Add Field\r\n                            </button>\r\n                        </div>\r\n                      <div class=\"mb-4\">\r\n                        <!-- <div class=\"well\" style=\"max-height: 300px;overflow: auto;\"> -->\r\n                          <ul id=\"fields\" class=\"list-group checked-list-box\">\r\n                            <!-- <ngx-sortable listStyle=\"listStyle\" [items]=\"items\" [name]=\"'Stages'\" (listSorted)=\"listSorted($event)\" > -->\r\n                                <!-- <ng-template let-item> -->\r\n                                    <li  *ngFor=\"let field of fields\" class=\"list-group-item mb-2\" >\r\n                                       <div class=\"clearfix\">\r\n                                          <div class=\"float-left\" >\r\n                                            <input *ngIf=\"!field.isDefault\" [(ngModel)]=\"field.isChecked\" class=\"mr-2\" type=\"checkbox\" id=\"isChecked\">\r\n                                            <p id=\"text\">{{field.text}}</p>\r\n                                            <p class=\"d-none\" id=\"type\">{{field.type}}</p>\r\n                                          </div>\r\n                                          <div class=\"float-right\">\r\n                                            <input [(ngModel)]=\"field.isRequired\" class=\"mr-2\" type=\"checkbox\" id=\"isRequired\">\r\n                                            <p>This field is required</p>\r\n                                          </div>\r\n                                       </div>\r\n                                    </li>\r\n                                <!-- </ng-template> -->\r\n                            <!-- </ngx-sortable> -->\r\n                          </ul>\r\n                        <!-- </div> -->\r\n\r\n   \r\n                      </div>\r\n        \r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left\"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <!-- <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button> -->\r\n                        <button (click)=\"finish()\" class=\"btn btn-primary btn-lg float-right\"> {{ isActionUpdate ? 'Update' : 'Finish'}} </button>\r\n                        \r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n             </div> \r\n\r\n             \r\n             <!-- <div [hidden]=\"currentStep != 5\">\r\n              <div class=\"card shadow mb-4\">\r\n                  <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Questionnaire selection</h6>\r\n                    \r\n                  </div>\r\n                  <div class=\"card-body\">\r\n                    <div class=\"alert alert-primary\" role=\"alert\">\r\n                      You can create question sets for your candidates. During filling the application form, candidates will have to answer your selected question sets.\r\n                    </div>\r\n                    <div class=\"mb-4\">\r\n                      <input [(ngModel)]=\"job.question_set.isQuestionSet\" class=\"mr-2\" type=\"checkbox\">\r\n                      <p class=\"d-inline m-0\">This job requires question set</p>\r\n                    </div>\r\n\r\n                    <div class=\"mb-4 {{job.question_set.isQuestionSet ? 'd-block' : 'd-none'}}\">\r\n                      <div class=\"row\">\r\n                        <div class=\"col-4 label\">\r\n                          <p class=\"m-0\">Please Select Question set:</p>\r\n                        </div>\r\n                        <div class=\"col-8\">\r\n                            <select [(ngModel)]=\"job.question_set.questionnaire\" class=\"custom-select custom-select\">\r\n                                <option value=\"Questionnaire 1\">Questionnaire 1</option>\r\n                                <option value=\"Questionnaire 1\">Questionnaire 2</option>\r\n                              </select>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n      \r\n                    <div class=\"mb-4\">\r\n                      <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left\"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                      <button (click)=\"finish()\" class=\"btn btn-primary btn-lg float-right\"> {{ isActionUpdate ? 'Update' : 'Finish'}} </button>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n           </div>  -->\r\n           \r\n         </div>\r\n      </div>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"wrapper\">\r\n    <!-- Modal -->\r\n<div class=\"modal fade\" id=\"modalAddStage\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h5 class=\"modal-title\" id=\"exampleModalLabel\">Please Enter Stage Title</h5>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <input [(ngModel)]=\"stageTitle\" type=\"text\" class=\"form-control\">\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n          <button (click)=\"addStage()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Add</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"modal fade\" id=\"modalAddField\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n      <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h5 class=\"modal-title\" id=\"exampleModalLabel\">Add Field</h5>\r\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <div class=\"mb-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-2\">\r\n                    <p class=\"d-inline m-0 field-label\"> Title</p>\r\n                </div>\r\n                <div class=\"col-10\">\r\n                  <input [(ngModel)]=\"field.fieldTitle\" type=\"text\" class=\"form-control\">\r\n                </div>\r\n              </div>\r\n            </div>\r\n           <div class=\"mb-4\">\r\n             <div class=\"row\">\r\n               <div class=\"col-2\">\r\n                 <p class=\"d-inline m-0 field-label\"> Type</p>\r\n               </div>\r\n               <div class=\"col-10\">\r\n                  <select [(ngModel)]=\"field.fieldType\" class=\"custom-select custom-select\">\r\n                      <option value=\"text\">\r\n                        Text\r\n                      </option>\r\n                      <option value=\"file\">\r\n                        File\r\n                      </option>\r\n                  </select>\r\n               </div>\r\n             </div>\r\n             \r\n           </div>\r\n            <div>\r\n                <div class=\"row\">\r\n                  <div class=\"col-2\"></div>\r\n                  <div class=\"col-10\">\r\n                      <input [(ngModel)]=\"field.isRequired\" class=\"mr-2\" type=\"checkbox\">\r\n                      <p class=\"d-inline m-0\">Required Field</p>\r\n                  </div>\r\n                </div>\r\n            </div> \r\n\r\n          </div>\r\n          <div class=\"modal-footer\">\r\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n            <button (click)=\"addField()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Add</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  <app-sidebar></app-sidebar>\r\n  <!-- Content Wrapper -->\r\n  <div id=\"content-wrapper\" class=\"d-flex flex-column\">\r\n\r\n    <!-- Main Content -->\r\n    <div id=\"content\">\r\n      <app-nav-bar></app-nav-bar>\r\n         <div class=\"container-fluid\">\r\n            <ul class=\"recruitment-step-progress p-0\">\r\n                <li class=\"{{currentStep == 1 ? 'active' : 'not-active'}}\"><span class=\"step-number\">1</span><span class=\"step-content\">Job description</span></li>\r\n                <li class=\"{{currentStep == 2 ? 'active' : 'not-active'}}\"><span class=\"step-number\">2</span><span class=\"step-content\">Hiring workflow</span>\r\n                </li>\r\n                <li class=\"{{currentStep == 3 ? 'active' : 'not-active'}}\"><span class=\"step-number\">3</span><span class=\"step-content\">Job information</span>\r\n                </li>\r\n                <li class=\"{{currentStep == 4 ? 'active' : 'not-active'}}\"><span class=\"step-number\">4</span><span class=\"step-content\">Basic information</span>\r\n                </li>\r\n                <!-- <li class=\"{{currentStep == 5 ? 'active' : 'not-active'}}\"><span class=\"step-number\">5</span><span class=\"step-content\">Question set</span></li> -->\r\n              </ul>\r\n\r\n             <div *ngIf=\"currentStep == 1\">\r\n                <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Job information</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"mb-4\">\r\n                          <p class=\"mb-1\">Position Title</p>\r\n                          <input [(ngModel)]=\"job.job_description.position_title\" type=\"text\">\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <p class=\"mb-1\">Opening Description</p>\r\n                          <editor apiKey=\"w1avmrtxbk66oqxy9zhv3923hk1whon1eepsjtimqkcubcig\" [(ngModel)]=\"job.opening_description\"  [init]=\"{menubar:false,statusbar: false}\"></editor>\r\n                      </div>\r\n        \r\n                      <div class=\"mb-4\">\r\n                      <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left \"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n             </div>  \r\n              <div [hidden]=\"currentStep !== 2\">\r\n                <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Hiring Stage</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"alert alert-primary\" role=\"alert\">\r\n                          Stages below reflect the steps in your hiring process. Coordinator of a stage typically schedules interviews, collects evaluation from interviewers and communicates with the candidate.\r\n                      </div>\r\n                      <div class=\"mb-2 clearfix\">\r\n                          <button data-toggle=\"modal\" data-target=\"#modalAddStage\" class=\"btn btn-primary btn float-right\"> \r\n                             <i class=\"mr-1 fa fa-plus\"></i> Add Stage \r\n                            </button>\r\n                        </div>\r\n                      <div class=\"mb-4\">\r\n                        <!-- <div class=\"well\" style=\"max-height: 300px;overflow: auto;\"> -->\r\n                          <ul id=\"sortable\" class=\"list-group checked-list-box\">\r\n                            <!-- <ngx-sortable listStyle=\"listStyle\" [items]=\"items\" [name]=\"'Stages'\" (listSorted)=\"listSorted($event)\" > -->\r\n                                <!-- <ng-template let-item> -->\r\n                                    <li  *ngFor=\"let stage of stages\" class=\"list-group-item mb-2\" >\r\n                                 \r\n                                        <input [(ngModel)]=\"stage.isChecked\" class=\"mr-2\" type=\"checkbox\" id=\"gridCheck\">\r\n                                        <p>{{stage.text}}</p>\r\n                                    </li>\r\n                                <!-- </ng-template> -->\r\n                            <!-- </ngx-sortable> -->\r\n                          </ul>\r\n                        <!-- </div> -->\r\n\r\n   \r\n                      </div>\r\n        \r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left\"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n             </div> \r\n\r\n             <div [hidden]=\"currentStep != 3\">\r\n                <div class=\"card shadow mb-4 job-information\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Job information</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Department</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <select [(ngModel)]=\"job.job_information.department\" class=\"custom-select custom-select\">\r\n                                    <option *ngFor=\"let department of departments\" [value]=\"department.title\">\r\n                                      {{department.title}}\r\n                                    </option>\r\n                                  </select>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Employment Type</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <select [(ngModel)]=\"job.job_information.employment_type\" class=\"custom-select custom-select\">\r\n                                    <option value=\"Full Time\">Full Time</option>\r\n                                    <option value=\"Part Time\">Part Time</option>\r\n                                    <option value=\"On Contract\">On Contract</option>\r\n                                    <option value=\"Temporary\">Temporary</option>\r\n                                    <option value=\"Trainee\">Trainee</option>\r\n                                  </select>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4\">\r\n  \r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <input [(ngModel)]=\"job.job_information.isRemoteOption\" class=\"mr-2\" type=\"checkbox\">\r\n                                <p class=\"d-inline m-0\">Remote working is an option for this opening</p>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Minimum Experience</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                                <select [(ngModel)]=\"job.job_information.minimum_experience\" class=\"custom-select custom-select\">\r\n                                    <option value=\"Fresher\">Fresher</option>\r\n                                    <option value=\"1 - 3 Year\">1 - 3 Year</option>\r\n                                    <option value=\"3 - 5 Years\">3 - 5 Years</option>\r\n                                    <option value=\"5 - 7 Years\">5 - 7 Years</option>\r\n                                    <option value=\"7 - 10 Years\">7 - 10 Years</option>\r\n                                    <option value=\"Above 10 Years\">Above 10 Years</option>\r\n                                  </select>\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Submission Deadline</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                               <input [(ngModel)]=\"job.job_information.submission_deadline\" id=\"datepicker\" width=\"276\">\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Location</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                               <input [(ngModel)]=\"job.job_information.location\" type=\"text\" class=\"form-control\">\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                          <div class=\"row\">\r\n                            <div class=\"col-4 label\">\r\n                              <p class=\"m-0\">Number of Vacancy</p>\r\n                            </div>\r\n                            <div class=\"col-8\">\r\n                               <input [(ngModel)]=\"job.job_information.number_of_vacancy\" type=\"number\" class=\"form-control\">\r\n                            </div>\r\n                          </div>\r\n                      </div>\r\n\r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left \"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button>\r\n                      </div>\r\n                     \r\n                    </div>\r\n                  </div>\r\n             </div>  \r\n\r\n             <div [hidden]=\"currentStep != 4\">\r\n                <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Candidate Basic Information</h6>\r\n                      \r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <div class=\"alert alert-primary\" role=\"alert\">\r\n                        The first 3 fields (Name, Email and Upload CV) are mandatory and will be displayed in candidate application form.\r\n                      </div>\r\n                      <div class=\"mb-2 clearfix\">\r\n                          <button data-toggle=\"modal\" data-target=\"#modalAddField\" class=\"btn btn-primary btn float-right\"> \r\n                             <i class=\"mr-1 fa fa-plus\"></i> Add Field\r\n                            </button>\r\n                        </div>\r\n                      <div class=\"mb-4\">\r\n                        <!-- <div class=\"well\" style=\"max-height: 300px;overflow: auto;\"> -->\r\n                          <ul id=\"fields\" class=\"list-group checked-list-box\">\r\n                            <!-- <ngx-sortable listStyle=\"listStyle\" [items]=\"items\" [name]=\"'Stages'\" (listSorted)=\"listSorted($event)\" > -->\r\n                                <!-- <ng-template let-item> -->\r\n                                    <li  *ngFor=\"let field of fields; let i = index;\" class=\"list-group-item mb-2\" >\r\n                                       <div class=\"clearfix\">\r\n                                          <div class=\"float-left\" >\r\n                                            <input *ngIf=\"!field.isDefault\" [(ngModel)]=\"field.isChecked\" class=\"mr-2\" type=\"checkbox\" id=\"isChecked\">\r\n                                            <p id=\"text\">{{field.text}}</p>\r\n                                            <p class=\"d-none\" id=\"type\">{{field.type}}</p>\r\n                                          </div>\r\n                                          <div class=\"float-right\">\r\n                                            <input [(ngModel)]=\"field.isRequired\" class=\"mr-2\" type=\"checkbox\" id=\"isRequired\">\r\n                                            <p>This field is required</p>\r\n                                            <button (click)=\"removeField(i)\" *ngIf=\"!field.isDefault\" class=\"btn btn-sm btn-transparent ml-2\">\r\n                                              <i class=\"fa fa-trash text-danger\"></i>\r\n                                            </button>\r\n                                          </div>\r\n                                       </div>\r\n                                    </li>\r\n                                <!-- </ng-template> -->\r\n                            <!-- </ngx-sortable> -->\r\n                          </ul>\r\n                        <!-- </div> -->\r\n\r\n   \r\n                      </div>\r\n        \r\n                      <div class=\"mb-4\">\r\n                        <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left\"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                        <!-- <button (click)=\"nextStep()\" class=\"btn btn-primary btn-lg float-right\"> Next <i class=\"ml-1 fa fa-chevron-right\"></i></button> -->\r\n                        <button (click)=\"finish()\" class=\"btn btn-primary btn-lg float-right\"> {{ isActionUpdate ? 'Update' : 'Finish'}} </button>\r\n                        \r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n             </div> \r\n\r\n             \r\n             <!-- <div [hidden]=\"currentStep != 5\">\r\n              <div class=\"card shadow mb-4\">\r\n                  <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Questionnaire selection</h6>\r\n                    \r\n                  </div>\r\n                  <div class=\"card-body\">\r\n                    <div class=\"alert alert-primary\" role=\"alert\">\r\n                      You can create question sets for your candidates. During filling the application form, candidates will have to answer your selected question sets.\r\n                    </div>\r\n                    <div class=\"mb-4\">\r\n                      <input [(ngModel)]=\"job.question_set.isQuestionSet\" class=\"mr-2\" type=\"checkbox\">\r\n                      <p class=\"d-inline m-0\">This job requires question set</p>\r\n                    </div>\r\n\r\n                    <div class=\"mb-4 {{job.question_set.isQuestionSet ? 'd-block' : 'd-none'}}\">\r\n                      <div class=\"row\">\r\n                        <div class=\"col-4 label\">\r\n                          <p class=\"m-0\">Please Select Question set:</p>\r\n                        </div>\r\n                        <div class=\"col-8\">\r\n                            <select [(ngModel)]=\"job.question_set.questionnaire\" class=\"custom-select custom-select\">\r\n                                <option value=\"Questionnaire 1\">Questionnaire 1</option>\r\n                                <option value=\"Questionnaire 1\">Questionnaire 2</option>\r\n                              </select>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n      \r\n                    <div class=\"mb-4\">\r\n                      <button *ngIf=\"currentStep !== 1\" (click)=\"backStep()\" class=\"btn btn-default btn-lg float-left\"><i class=\"mr-1 fa fa-chevron-left\"></i> Back </button>\r\n                      <button (click)=\"finish()\" class=\"btn btn-primary btn-lg float-right\"> {{ isActionUpdate ? 'Update' : 'Finish'}} </button>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n           </div>  -->\r\n           \r\n         </div>\r\n      </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -371,7 +371,7 @@ module.exports = "  <!-- Topbar -->\r\n  <nav class=\"navbar navbar-expand navba
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\">\r\n\r\n    <div class=\"modal fade\" id=\"applyNowModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n        <div class=\"modal-dialog  modal-lg\" role=\"document\">\r\n          <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n              <h5 class=\"modal-title\" id=\"exampleModalLabel\">Apply Now</h5>\r\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                <span aria-hidden=\"true\">&times;</span>\r\n              </button>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n              <p>Please enter your personal information</p>\r\n                <div *ngFor=\"let field of fields\"  class=\"input-group mb-3  px-5\">\r\n                    <div class=\"input-group-prepend\">\r\n                        <span class=\"input-group-text\">{{field.text}}</span>\r\n                      </div>\r\n                      <div *ngIf=\"field.type == 'file'\" class=\"custom-file\">\r\n                        <input [(ngModel)]=\"field.value\" type=\"file\" class=\"custom-file-input\" [id]=\"removeSpaces(field.text)\">\r\n                        <label class=\"custom-file-label\" [for]=\"removeSpaces(field.text)\">{{field.value.length > 0 ? fixName(field.value) : 'Choose a file'}}</label>\r\n                      </div>\r\n                      <input [(ngModel)]=\"field.value\" class=\"form-control\" *ngIf=\"field.type == 'text'\" type=\"text\">\r\n                      <textarea [(ngModel)]=\"field.value\" *ngIf=\"field.type == 'textArea'\" class=\"form-control\" aria-label=\"With textarea\"></textarea>\r\n                </div>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n              <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n              <button (click)=\"applyNow()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Apply Now</button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n  \r\n    <app-client-sidebar></app-client-sidebar>\r\n  \r\n      <!-- Content Wrapper -->\r\n      <div id=\"content-wrapper\" class=\"d-flex flex-column\">\r\n  \r\n        <!-- Main Content -->\r\n        <div id=\"content\">\r\n            <app-client-navbar (onSearch)=\"onSearch($event)\"></app-client-navbar>\r\n                <!-- Begin Page Content -->\r\n          <div class=\"container-fluid\">\r\n  \r\n              <!-- Page Heading -->\r\n              <div class=\"d-sm-flex align-items-center justify-content-between mb-4\">\r\n                <h1 class=\"h3 mb-0 text-gray-800\">Job List</h1>\r\n                <!-- <a href=\"#\" class=\"d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm\"><i class=\"fas fa-download fa-sm text-white-50\"></i> Generate Report</a> -->\r\n              </div>\r\n    \r\n              <!-- Content Row -->\r\n              <div class=\"row\">\r\n                <div class=\"col-lg-8\">\r\n                  <div *ngFor=\"let jobOpening of jobOpenings\" class=\"row\">\r\n                    <div class=\"col\">\r\n                     <div data-toggle=\"collapse\" [attr.data-target]=\"'#job-id-' + jobOpening.id\" aria-expanded=\"false\" aria-controls=\"job-details\" class=\"card shadow mb-4\">\r\n                       <div class=\"title\">\r\n                          <button (click)=\"doApplyNow(jobOpening)\" data-toggle=\"modal\" data-target=\"#applyNowModal\" class=\"btn btn-primary float-right\">Apply Now</button>\r\n                         <h5 class=\"text-primary\">{{parseJson(jobOpening.job_description).position_title}}</h5>\r\n                         <h6>{{parseJson(jobOpening.job_information).department}}</h6>\r\n                         <p  class=\"m-0\">{{fromNow(jobOpening.created_on)}}</p>\r\n                       </div>\r\n                       <div class=\"card-body\">\r\n                            <p class=\"m-0\"> <span class=\"text-primary\">Experience: </span> <span class=\"ml-2\">{{parseJson(jobOpening.job_information).minimum_experience}}</span></p>\r\n                            <p  class=\"m-0\"><span class=\"text-primary\">Job Type:</span> <span class=\"ml-2\">{{parseJson(jobOpening.job_information).employment_type}}</span></p>\r\n                            <p><span class=\"text-primary\">Submission Deadline: </span><span class=\"ml-2\">{{parseJson(jobOpening.job_information).submission_deadline}}</span></p>\r\n                            <div class=\"collapse\"  id=\"job-id-{{jobOpening.id}}\">\r\n                           <!-- <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p> -->\r\n                              <div  [innerHTML]=\"jobOpening.opening_description\" class=\"mb-0\">\r\n                              </div>\r\n                            </div>\r\n                          </div>\r\n                       </div>\r\n                    </div>\r\n                 </div>\r\n                </div>\r\n\r\n                <div class=\"col-lg-4\">\r\n                  <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Location</h6>\r\n                      <div class=\"dropdown no-arrow\">\r\n                        <a class=\"dropdown-toggle\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                          <i class=\"fas fa-ellipsis-v fa-sm fa-fw text-gray-400\"></i>\r\n                        </a>\r\n                        <div class=\"dropdown-menu dropdown-menu-right shadow animated--fade-in\" aria-labelledby=\"dropdownMenuLink\">\r\n                          <div class=\"dropdown-header\">Dropdown Header:</div>\r\n                          <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n                          <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                          <div class=\"dropdown-divider\"></div>\r\n                          <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <p>Angeles City(5)</p>\r\n                    </div>\r\n                  </div>\r\n                 </div>\r\n              </div>\r\n\r\n            \r\n              \r\n            </div>\r\n            <!-- /.container-fluid -->\r\n        </div>\r\n        <app-footer></app-footer>\r\n  \r\n      </div>\r\n  \r\n  \r\n  </div>"
+module.exports = "<div id=\"wrapper\">\r\n    <div class=\"modal fade\" id=\"applyNowModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n        <div class=\"modal-dialog  modal-lg\" role=\"document\">\r\n          <div class=\"modal-content\">\r\n            <form [formGroup]=\"registerForm\" (ngSubmit)=\"applyNow()\">\r\n\r\n                <div class=\"modal-header\">\r\n                  <h5 class=\"modal-title\" id=\"exampleModalLabel\">Apply Now</h5>\r\n                  <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span>\r\n                  </button>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <p>Please enter your personal information</p>\r\n                    <div *ngIf=\"submitted && registerForm.invalid\" class=\"alert alert-danger\">\r\n                        An Error Occured, please check form\r\n                    </div>\r\n                      <div *ngFor=\"let field of fields\"  class=\"input-group mb-3  px-5\">\r\n                          <div class=\"input-group-prepend\">\r\n                              <span class=\"input-group-text\">{{field.text}} <span *ngIf=\"field.isRequired\" class=\"text-danger\">*</span></span>\r\n                            </div>\r\n                            <div *ngIf=\"field.type == 'file'\" class=\"custom-file\">\r\n                              <input [formControlName]=\"removeSpaces(field.text)\" [(ngModel)]=\"field.value\" type=\"file\" class=\"custom-file-input {{ submitted && f[removeSpaces(field.text)].errors ? 'is-invalid' : ''}}\" [id]=\"removeSpaces(field.text)\">\r\n                              <label class=\"custom-file-label\" [for]=\"removeSpaces(field.text)\">{{field.value.length > 0 ? fixName(field.value) : 'Choose a file'}}</label>\r\n                            </div>\r\n                            <input  [formControlName]=\"removeSpaces(field.text)\" [(ngModel)]=\"field.value\" class=\"form-control {{ submitted && f[removeSpaces(field.text)].errors ? 'is-invalid' : ''}}\" *ngIf=\"field.type == 'text'\" type=\"text\">\r\n                            <textarea [formControlName]=\"removeSpaces(field.text)\" [(ngModel)]=\"field.value\" *ngIf=\"field.type == 'textArea'\" class=\"form-control {{ submitted && f[removeSpaces(field.text)].errors ? 'is-invalid' : ''}}\" aria-label=\"With textarea\"></textarea>\r\n                      </div>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                  <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\r\n                  <button  type=\"submit\" class=\"btn btn-primary\" >Apply Now</button>\r\n                </div>\r\n\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n  \r\n    <app-client-sidebar></app-client-sidebar>\r\n  \r\n      <!-- Content Wrapper -->\r\n      <div id=\"content-wrapper\" class=\"d-flex flex-column\">\r\n  \r\n        <!-- Main Content -->\r\n        <div id=\"content\">\r\n            <app-client-navbar (onSearch)=\"onSearch($event)\"></app-client-navbar>\r\n                <!-- Begin Page Content -->\r\n          <div class=\"container-fluid\">\r\n  \r\n              <!-- Page Heading -->\r\n              <div class=\"d-sm-flex align-items-center justify-content-between mb-4\">\r\n                <h1 class=\"h3 mb-0 text-gray-800\">Job List</h1>\r\n                <!-- <a href=\"#\" class=\"d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm\"><i class=\"fas fa-download fa-sm text-white-50\"></i> Generate Report</a> -->\r\n              </div>\r\n    \r\n              <!-- Content Row -->\r\n              <div class=\"row\">\r\n                <div class=\"col-lg-8\">\r\n                  <div *ngFor=\"let jobOpening of jobOpenings\" class=\"row\">\r\n                    <div class=\"col\">\r\n                     <div data-toggle=\"collapse\" [attr.data-target]=\"'#job-id-' + jobOpening.id\" aria-expanded=\"false\" aria-controls=\"job-details\" class=\"card shadow mb-4\">\r\n                       <div class=\"title\">\r\n                          <button (click)=\"doApplyNow(jobOpening)\" data-toggle=\"modal\" data-target=\"#applyNowModal\" class=\"btn btn-primary float-right\">Apply Now</button>\r\n                         <h5 class=\"text-primary\">{{parseJson(jobOpening.job_description).position_title}}</h5>\r\n                         <h6>{{parseJson(jobOpening.job_information).department}}</h6>\r\n                         <p  class=\"m-0\">{{fromNow(jobOpening.created_on)}}</p>\r\n                       </div>\r\n                       <div class=\"card-body\">\r\n                            <p class=\"m-0\"> <span class=\"text-primary\">Experience: </span> <span class=\"ml-2\">{{parseJson(jobOpening.job_information).minimum_experience}}</span></p>\r\n                            <p  class=\"m-0\"><span class=\"text-primary\">Job Type:</span> <span class=\"ml-2\">{{parseJson(jobOpening.job_information).employment_type}}</span></p>\r\n                            <p><span class=\"text-primary\">Submission Deadline: </span><span class=\"ml-2\">{{parseJson(jobOpening.job_information).submission_deadline}}</span></p>\r\n                            <div class=\"collapse\"  id=\"job-id-{{jobOpening.id}}\">\r\n                           <!-- <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p> -->\r\n                              <div  [innerHTML]=\"jobOpening.opening_description\" class=\"mb-0\">\r\n                              </div>\r\n                            </div>\r\n                          </div>\r\n                       </div>\r\n                    </div>\r\n                 </div>\r\n                </div>\r\n\r\n                <div class=\"col-lg-4\">\r\n                  <div class=\"card shadow mb-4\">\r\n                    <!-- Card Header - Dropdown -->\r\n                    <div class=\"card-header py-3 d-flex flex-row align-items-center justify-content-between\">\r\n                      <h6 class=\"m-0 font-weight-bold text-primary\">Location</h6>\r\n                      <div class=\"dropdown no-arrow\">\r\n                        <a class=\"dropdown-toggle\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                          <i class=\"fas fa-ellipsis-v fa-sm fa-fw text-gray-400\"></i>\r\n                        </a>\r\n                        <div class=\"dropdown-menu dropdown-menu-right shadow animated--fade-in\" aria-labelledby=\"dropdownMenuLink\">\r\n                          <div class=\"dropdown-header\">Dropdown Header:</div>\r\n                          <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n                          <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                          <div class=\"dropdown-divider\"></div>\r\n                          <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                    <!-- Card Body -->\r\n                    <div class=\"card-body\">\r\n                      <p>Angeles City(5)</p>\r\n                    </div>\r\n                  </div>\r\n                 </div>\r\n              </div>\r\n\r\n            \r\n              \r\n            </div>\r\n            <!-- /.container-fluid -->\r\n        </div>\r\n        <app-footer></app-footer>\r\n  \r\n      </div>\r\n  \r\n  \r\n  </div>"
 
 /***/ }),
 
@@ -485,6 +485,17 @@ module.exports = "<div id=\"wrapper\">\r\n  <app-sidebar></app-sidebar>\r\n  <!-
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/reports/reports.component.html":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/reports/reports.component.html ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"wrapper\">\n  \n    <app-sidebar></app-sidebar>\n    \n    <!-- Content Wrapper -->\n    <div id=\"content-wrapper\" class=\"d-flex flex-column\">\n    \n    <!-- Main Content -->\n    <div id=\"content\">\n      <app-nav-bar></app-nav-bar>\n      <div class=\"container-fluid\">\n    \n        <h1 class=\"h3 mb-2 text-gray-800\">Reports</h1>\n        <!-- DataTales Example -->\n        <p class=\"mb-4\">DataTables is a third party plugin that is used to generate the demo table below. For more\n          information about DataTables, please visit the <a target=\"_blank\" href=\"https://datatables.net\">official\n            DataTables documentation</a>.</p>\n        <div class=\"card shadow mb-4\">\n          <div class=\"card-header py-3\">\n            <h6 class=\" d-inline m-0 font-weight-bold text-primary\">Entries</h6>\n            <button class=\"btn btn-primary float-right\" (click)=\"downloadCsv()\">Export CSV</button>\n          </div>\n          <div class=\"card-body\">\n            <div class=\"table-responsive\">\n              <div id=\"dataTable_wrapper\" class=\"dataTables_wrapper dt-bootstrap4\">\n                <div class=\"row\">\n                  <div class=\"col-sm-12\">\n                      <ul class=\"nav nav-tabs mb-4\">\n                          \n                          <li  (click)=\"changeTable('Opening Report')\" class=\"nav-item\">\n                            <a class=\"nav-link {{currentTable == 'Opening Report' ? 'active' : ''}}\" >Opening Report</a>\n                          </li>\n                          <li  (click)=\"changeTable('Candidate Report')\" class=\"nav-item\">\n                              <a class=\"nav-link {{currentTable == 'Candidate Report' ? 'active' : ''}}\" >Candidate Report</a>\n                            </li>\n                          \n                        </ul>\n                    <table datatable  [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered dataTable\" id=\"dataTable\" width=\"100%\" cellspacing=\"0\" role=\"grid\"\n                      aria-describedby=\"dataTable_info\" style=\"width: 100%;\">\n                      <thead  *ngIf=\"currentTable == 'Opening Report'\">\n                        <tr role=\"row\">\n                          <th class=\"sorting_asc\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                            aria-sort=\"ascending\" aria-label=\"Name: activate to sort column descending\"\n                            style=\"width: 157px;\">Job Opening</th>\n                          <th class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                            aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">Created</th>\n                          <th class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                            aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">Candidates</th>\n                          <th *ngFor=\"let stage of stages\" class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                            aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">{{stage.stage}}</th>\n                        </tr>\n                      </thead>\n                      <tfoot  *ngIf=\"currentTable == 'Opening Report'\">\n                        <tr>\n                          <th rowspan=\"1\" colspan=\"1\">Job Opening</th>\n                          <th rowspan=\"1\" colspan=\"1\">Created</th>\n                          <th rowspan=\"1\" colspan=\"1\">Candidates</th>\n                          <th *ngFor=\"let stage of stages\"  rowspan=\"1\" colspan=\"1\">{{stage.stage}}</th>\n                        </tr>\n                      </tfoot>\n                      <tbody  *ngIf=\"currentTable == 'Opening Report'\">\n                        <tr *ngFor=\"let jobOpening of jobOpenings\" role=\"row\" class=\"odd\">\n                          <td>{{parseJson(jobOpening.job_description).position_title}}</td>\n                          <td>{{formatDate(jobOpening.created_on)}}</td>\n                          <td>{{getTotalCandidate(jobOpening.id)}}</td>\n                          <td *ngFor=\"let stage of stages\" >{{getTotalCandidateByStage(stage.stage, jobOpening.id)}}</td>\n                        </tr>\n                      </tbody>\n\n                      <thead  *ngIf=\"currentTable == 'Candidate Report'\">\n                          <tr role=\"row\">\n                            <th class=\"sorting_asc\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                              aria-sort=\"ascending\" aria-label=\"Name: activate to sort column descending\"\n                              style=\"width: 157px;\">Candidate Name</th>\n                            <th class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                              aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">Email</th>\n                            <th class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                              aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">Phone</th>\n                            <th  class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                              aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">Apply Date</th>\n                              <th  class=\"sorting\" tabindex=\"0\" aria-controls=\"dataTable\" rowspan=\"1\" colspan=\"1\"\n                              aria-label=\"Position: activate to sort column ascending\" style=\"width: 50px;\">Status</th>\n                          </tr>\n                        </thead>\n                        <tfoot  *ngIf=\"currentTable == 'Candidate Report'\">\n                          <tr>\n                            <th rowspan=\"1\" colspan=\"1\">Candidate Nmae</th>\n                            <th rowspan=\"1\" colspan=\"1\">Email</th>\n                            <th rowspan=\"1\" colspan=\"1\">Phone</th>\n                            <th rowspan=\"1\" colspan=\"1\">Apply Date</th>\n                            <th rowspan=\"1\" colspan=\"1\">Status</th>\n                          </tr>\n                        </tfoot>\n                        <tbody  *ngIf=\"currentTable == 'Candidate Report'\">\n                          <tr *ngFor=\"let candidate of candidates\" role=\"row\" class=\"odd\">\n                            <td>{{parseJson(candidate.details)[0].value}}</td>\n                            <td>{{parseJson(candidate.details)[1].value}}</td>\n                            <td>{{parseJson(candidate.details)[2].value}}</td>\n                            <td>{{formatDate(candidate.created_on)}}</td>\n                            <td>{{candidate.status}}</td>\n                          </tr>\n                        </tbody>\n                    </table>\n  \n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n    \n      </div>\n    </div>\n    </div>\n    </div>"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/components/sidebar/sidebar.component.html":
 /*!*************************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/components/sidebar/sidebar.component.html ***!
@@ -492,7 +503,7 @@ module.exports = "<div id=\"wrapper\">\r\n  <app-sidebar></app-sidebar>\r\n  <!-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n    <!-- Sidebar -->\r\n    <ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion {{isToggled ? 'toggled' : ''}}\" id=\"accordionSidebar\">\r\n\r\n      <!-- Sidebar - Brand -->\r\n      <a class=\"sidebar-brand d-flex align-items-center justify-content-center\" routerLink=\"/home\">\r\n        <div class=\"sidebar-brand-icon\">\r\n          <i class=\"fas fa-user\"></i>\r\n        </div>\r\n        <div class=\"sidebar-brand-text mx-3\">\r\n          Recruitment\r\n            <!-- <sup>2</sup> -->\r\n\r\n        </div>\r\n      </a>\r\n\r\n      <!-- Divider -->\r\n      <hr class=\"sidebar-divider my-0\">\r\n\r\n      <!-- Nav Item - Dashboard -->\r\n      <li class=\"nav-item\"  routerLinkActive=\"active\">\r\n        <a class=\"nav-link\" routerLink=\"/admin\" >\r\n          <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n          <span>Dashboard</span></a>\r\n      </li>\r\n\r\n    \r\n\r\n      <li *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n        <a class=\"nav-link\" routerLink=\"/job-openings\">\r\n          <i class=\"fas fa-fw fa-user-md\"></i>\r\n          <span>Job Opening</span></a>\r\n      </li>\r\n\r\n      <li *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\"   routerLinkActive=\"active\">\r\n            <a class=\"nav-link\" routerLink=\"/add-job-opening\">\r\n              <i class=\"fas fa-fw fa-plus\"></i>\r\n              <span>Add Job Opening</span></a>\r\n      </li>\r\n      <!-- <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" routerLink=\"/question-sets\">\r\n            <i class=\"fas fa-fw fa-tasks\"></i>\r\n            <span>Question Sets</span></a>\r\n      </li> -->\r\n      <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\"routerLink=\"/candidates\" >\r\n            <i class=\"fas fa-fw fa-users\"></i>\r\n            <span>Candidates</span></a>\r\n      </li>\r\n      <!-- <li class=\"nav-item\">\r\n          <a class=\"nav-link\" href=\"#\">\r\n            <i class=\"fas fa-fw fa-table\"></i>\r\n            <span>Reports </span></a>\r\n      </li> -->\r\n      <li  *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n        <a class=\"nav-link\" routerLink=\"/employees\">\r\n          <i class=\"fas fa-fw fa-users  \"></i>\r\n          <span>Employee </span></a>\r\n      </li>\r\n      <li  *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" routerLink=\"/departments\">\r\n            <i class=\"fas fa-fw fa-archway  \"></i>\r\n            <span>Departments</span></a>\r\n        </li>\r\n  \r\n\r\n\r\n      <!-- Divider -->\r\n      <hr class=\"sidebar-divider d-none d-md-block\">\r\n\r\n      <!-- Sidebar Toggler (Sidebar) -->\r\n      <div class=\"text-center d-none d-md-inline\">\r\n        <button (click)=\"toggleSidebar()\" class=\"rounded-circle border-0\" id=\"sidebarToggle\"></button>\r\n      </div>\r\n\r\n    </ul>\r\n    <!-- End of Sidebar -->"
+module.exports = "\r\n    <!-- Sidebar -->\r\n    <ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion {{isToggled ? 'toggled' : ''}}\" id=\"accordionSidebar\">\r\n\r\n      <!-- Sidebar - Brand -->\r\n      <a class=\"sidebar-brand d-flex align-items-center justify-content-center\" routerLink=\"/home\">\r\n        <div class=\"sidebar-brand-icon\">\r\n          <i class=\"fas fa-user\"></i>\r\n        </div>\r\n        <div class=\"sidebar-brand-text mx-3\">\r\n          Recruitment\r\n            <!-- <sup>2</sup> -->\r\n\r\n        </div>\r\n      </a>\r\n\r\n      <!-- Divider -->\r\n      <hr class=\"sidebar-divider my-0\">\r\n\r\n      <!-- Nav Item - Dashboard -->\r\n      <li class=\"nav-item\"  routerLinkActive=\"active\">\r\n        <a class=\"nav-link\" routerLink=\"/admin\" >\r\n          <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n          <span>Dashboard</span></a>\r\n      </li>\r\n\r\n    \r\n\r\n      <li *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n        <a class=\"nav-link\" routerLink=\"/job-openings\">\r\n          <i class=\"fas fa-fw fa-user-md\"></i>\r\n          <span>Job Opening</span></a>\r\n      </li>\r\n\r\n      <li *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\"   routerLinkActive=\"active\">\r\n            <a class=\"nav-link\" routerLink=\"/add-job-opening\">\r\n              <i class=\"fas fa-fw fa-plus\"></i>\r\n              <span>Add Job Opening</span></a>\r\n      </li>\r\n      <!-- <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" routerLink=\"/question-sets\">\r\n            <i class=\"fas fa-fw fa-tasks\"></i>\r\n            <span>Question Sets</span></a>\r\n      </li> -->\r\n      <li class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\"routerLink=\"/candidates\" >\r\n            <i class=\"fas fa-fw fa-users\"></i>\r\n            <span>Candidates</span></a>\r\n      </li>\r\n    \r\n      <li  *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n        <a class=\"nav-link\" routerLink=\"/employees\">\r\n          <i class=\"fas fa-fw fa-users  \"></i>\r\n          <span>Employee </span></a>\r\n      </li>\r\n      <li  *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" routerLink=\"/departments\">\r\n            <i class=\"fas fa-fw fa-archway  \"></i>\r\n            <span>Departments</span></a>\r\n        </li>\r\n  \r\n      <li *ngIf=\"databaseService?.user?.level == 0\" class=\"nav-item\" routerLinkActive=\"active\">\r\n          <a class=\"nav-link\" routerLink=\"/reports\">\r\n            <i class=\"fas fa-fw fa-table\"></i>\r\n            <span>Reports </span></a>\r\n      </li>\r\n\r\n      <!-- Divider -->\r\n      <hr class=\"sidebar-divider d-none d-md-block\">\r\n\r\n      <!-- Sidebar Toggler (Sidebar) -->\r\n      <div class=\"text-center d-none d-md-inline\">\r\n        <button (click)=\"toggleSidebar()\" class=\"rounded-circle border-0\" id=\"sidebarToggle\"></button>\r\n      </div>\r\n\r\n    </ul>\r\n    <!-- End of Sidebar -->"
 
 /***/ }),
 
@@ -584,6 +595,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./admin/admin.guard.service */ "./src/app/admin/admin.guard.service.ts");
 /* harmony import */ var _components_departments_departments_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/departments/departments.component */ "./src/app/components/departments/departments.component.ts");
 /* harmony import */ var _components_client_page_missing_requirments_missing_requirments_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/client-page/missing-requirments/missing-requirments.component */ "./src/app/components/client-page/missing-requirments/missing-requirments.component.ts");
+/* harmony import */ var _components_reports_reports_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/reports/reports.component */ "./src/app/components/reports/reports.component.ts");
+
 
 
 
@@ -627,6 +640,7 @@ var routes = [
     { path: 'candidates', component: _component_candidates_candidates_component__WEBPACK_IMPORTED_MODULE_14__["CandidatesComponent"], canActivate: [_admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_17__["AdminGuardService"]] },
     { path: 'candidate-details', component: _component_candidate_details_candidate_details_component__WEBPACK_IMPORTED_MODULE_15__["CandidateDetailsComponent"], canActivate: [_admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_17__["AdminGuardService"]] },
     { path: 'departments', component: _components_departments_departments_component__WEBPACK_IMPORTED_MODULE_18__["DepartmentsComponent"], canActivate: [_admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_17__["AdminGuardService"]] },
+    { path: 'reports', component: _components_reports_reports_component__WEBPACK_IMPORTED_MODULE_20__["ReportsComponent"], canActivate: [_admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_17__["AdminGuardService"]] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -655,7 +669,8 @@ var routingComponents = [
     _component_candidates_candidates_component__WEBPACK_IMPORTED_MODULE_14__["CandidatesComponent"],
     _component_candidate_details_candidate_details_component__WEBPACK_IMPORTED_MODULE_15__["CandidateDetailsComponent"],
     _components_departments_departments_component__WEBPACK_IMPORTED_MODULE_18__["DepartmentsComponent"],
-    _components_client_page_missing_requirments_missing_requirments_component__WEBPACK_IMPORTED_MODULE_19__["MissingRequirmentsComponent"]
+    _components_client_page_missing_requirments_missing_requirments_component__WEBPACK_IMPORTED_MODULE_19__["MissingRequirmentsComponent"],
+    _components_reports_reports_component__WEBPACK_IMPORTED_MODULE_20__["ReportsComponent"]
 ];
 
 
@@ -668,7 +683,7 @@ var routingComponents = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host ::ng-deep ul.checked-list-box .sortable-container {\n  border: none;\n}\n:host ::ng-deep ul.checked-list-box .sortable-container li {\n  background-color: #ffffff;\n  color: #858796;\n}\n:host ::ng-deep ngx-spinner .overlay {\n  position: fixed !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFx2aW5jZVxcYW5ndWxhci1wcm9qZWN0c1xccmVjcnVpdG1lbnQvc3JjXFxhcHBcXGFwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNJO0VBQ0ksWUFBQTtBQ0FSO0FEQ1E7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUNDWjtBRE1JO0VBQ0ksMEJBQUE7QUNIUiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IDo6bmctZGVlcCB1bC5jaGVja2VkLWxpc3QtYm94IHtcclxuICAgIC5zb3J0YWJsZS1jb250YWluZXJ7XHJcbiAgICAgICAgYm9yZGVyOiBub25lO1xyXG4gICAgICAgIGxpe1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgICAgICAgICBjb2xvcjogIzg1ODc5NjtcclxuICAgICAgICB9XHJcbiAgXHJcbiAgICB9XHJcbn1cclxuXHJcbjpob3N0IDo6bmctZGVlcCBuZ3gtc3Bpbm5lciB7XHJcbiAgICAub3ZlcmxheSB7XHJcbiAgICAgICAgcG9zaXRpb246IGZpeGVkICFpbXBvcnRhbnQ7XHJcbiAgICB9XHJcbn0iLCI6aG9zdCA6Om5nLWRlZXAgdWwuY2hlY2tlZC1saXN0LWJveCAuc29ydGFibGUtY29udGFpbmVyIHtcbiAgYm9yZGVyOiBub25lO1xufVxuOmhvc3QgOjpuZy1kZWVwIHVsLmNoZWNrZWQtbGlzdC1ib3ggLnNvcnRhYmxlLWNvbnRhaW5lciBsaSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XG4gIGNvbG9yOiAjODU4Nzk2O1xufVxuXG46aG9zdCA6Om5nLWRlZXAgbmd4LXNwaW5uZXIgLm92ZXJsYXkge1xuICBwb3NpdGlvbjogZml4ZWQgIWltcG9ydGFudDtcbn0iXX0= */"
+module.exports = ":host ::ng-deep ul.checked-list-box .sortable-container {\n  border: none;\n}\n:host ::ng-deep ul.checked-list-box .sortable-container li {\n  background-color: #ffffff;\n  color: #858796;\n}\n:host ::ng-deep ngx-spinner .overlay {\n  position: fixed !important;\n}\n:host ::ng-deep .btn-transparent {\n  background-color: transparent;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFx2aW5jZVxcYW5ndWxhci1wcm9qZWN0c1xccmVjcnVpdG1lbnQvc3JjXFxhcHBcXGFwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNJO0VBQ0ksWUFBQTtBQ0FSO0FEQ1E7RUFDSSx5QkFBQTtFQUNBLGNBQUE7QUNDWjtBRE1JO0VBQ0ksMEJBQUE7QUNIUjtBRFFJO0VBQ0ksNkJBQUE7QUNMUiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IDo6bmctZGVlcCB1bC5jaGVja2VkLWxpc3QtYm94IHtcclxuICAgIC5zb3J0YWJsZS1jb250YWluZXJ7XHJcbiAgICAgICAgYm9yZGVyOiBub25lO1xyXG4gICAgICAgIGxpe1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgICAgICAgICBjb2xvcjogIzg1ODc5NjtcclxuICAgICAgICB9XHJcbiAgXHJcbiAgICB9XHJcbn1cclxuXHJcbjpob3N0IDo6bmctZGVlcCBuZ3gtc3Bpbm5lciB7XHJcbiAgICAub3ZlcmxheSB7XHJcbiAgICAgICAgcG9zaXRpb246IGZpeGVkICFpbXBvcnRhbnQ7XHJcbiAgICB9XHJcbn1cclxuXHJcbjpob3N0IDo6bmctZGVlcCB7XHJcbiAgICAuYnRuLXRyYW5zcGFyZW50IHtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcclxuICAgIH1cclxufSIsIjpob3N0IDo6bmctZGVlcCB1bC5jaGVja2VkLWxpc3QtYm94IC5zb3J0YWJsZS1jb250YWluZXIge1xuICBib3JkZXI6IG5vbmU7XG59XG46aG9zdCA6Om5nLWRlZXAgdWwuY2hlY2tlZC1saXN0LWJveCAuc29ydGFibGUtY29udGFpbmVyIGxpIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZmZmZjtcbiAgY29sb3I6ICM4NTg3OTY7XG59XG5cbjpob3N0IDo6bmctZGVlcCBuZ3gtc3Bpbm5lciAub3ZlcmxheSB7XG4gIHBvc2l0aW9uOiBmaXhlZCAhaW1wb3J0YW50O1xufVxuXG46aG9zdCA6Om5nLWRlZXAgLmJ0bi10cmFuc3BhcmVudCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -684,15 +699,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_email_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/email.service */ "./src/app/services/email.service.ts");
-
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(emailService) {
-        this.emailService = emailService;
+    function AppComponent() {
         this.title = 'recruitment';
-        this.emailService.loadConfig();
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -700,7 +711,7 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/index.js!./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_email_service__WEBPACK_IMPORTED_MODULE_2__["EmailService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], AppComponent);
     return AppComponent;
 }());
@@ -740,6 +751,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./admin/admin.guard.service */ "./src/app/admin/admin.guard.service.ts");
 /* harmony import */ var _components_departments_departments_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/departments/departments.component */ "./src/app/components/departments/departments.component.ts");
 /* harmony import */ var _components_client_page_missing_requirments_missing_requirments_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/client-page/missing-requirments/missing-requirments.component */ "./src/app/components/client-page/missing-requirments/missing-requirments.component.ts");
+/* harmony import */ var _services_csv_generator_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./services/csv-generator.service */ "./src/app/services/csv-generator.service.ts");
+/* harmony import */ var _components_reports_reports_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/reports/reports.component */ "./src/app/components/reports/reports.component.ts");
+
+
 
 
 
@@ -772,12 +787,14 @@ var AppModule = /** @class */ (function () {
                 _components_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_15__["LogInComponent"],
                 _components_departments_departments_component__WEBPACK_IMPORTED_MODULE_19__["DepartmentsComponent"],
                 _components_client_page_missing_requirments_missing_requirments_component__WEBPACK_IMPORTED_MODULE_20__["MissingRequirmentsComponent"],
+                _components_reports_reports_component__WEBPACK_IMPORTED_MODULE_22__["ReportsComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
                 _tinymce_tinymce_angular__WEBPACK_IMPORTED_MODULE_5__["EditorModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"],
                 angular_datatables__WEBPACK_IMPORTED_MODULE_8__["DataTablesModule"],
                 ngx_spinner__WEBPACK_IMPORTED_MODULE_9__["NgxSpinnerModule"],
                 _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"],
@@ -790,7 +807,8 @@ var AppModule = /** @class */ (function () {
             providers: [
                 _services_database_service__WEBPACK_IMPORTED_MODULE_7__["DatabaseService"],
                 _services_email_service__WEBPACK_IMPORTED_MODULE_17__["EmailService"],
-                _admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_18__["AdminGuardService"]
+                _admin_admin_guard_service__WEBPACK_IMPORTED_MODULE_18__["AdminGuardService"],
+                _services_csv_generator_service__WEBPACK_IMPORTED_MODULE_21__["CsvGeneratorService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]],
             entryComponents: _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["routingComponents"]
@@ -1010,12 +1028,8 @@ var CandidateDetailsComponent = /** @class */ (function () {
         };
         this.databaseService.updateCandidate(data, function (res) {
             console.log(res);
-            _this.emailService.sendEmail(candidateEmail, message, function (err, results) {
-                if (err)
-                    console.error(err);
-                else
-                    console.log(results);
-                _this.spinner.hide();
+            _this.emailService.sendEmail(candidateEmail, message).subscribe(function (res) {
+                console.log(res);
             });
         }, 'interviews');
     };
@@ -1039,11 +1053,7 @@ var CandidateDetailsComponent = /** @class */ (function () {
         };
         this.databaseService.updateCandidate(data, function (res) {
             console.log(res);
-            _this.emailService.sendEmail(candidateEmail, message, function (err, results) {
-                if (err)
-                    console.error(err);
-                else
-                    console.log(results);
+            _this.emailService.sendEmail(candidateEmail, message).subscribe(function (res) {
                 _this.spinner.hide();
             });
         }, 'interviews');
@@ -1059,11 +1069,8 @@ var CandidateDetailsComponent = /** @class */ (function () {
             var candidateEmail = candidateDetails[1].value;
             var candidateName = candidateDetails[0].value;
             var message = "\n      <h1>Congratulations! " + candidateName + ", You are hired with the details:</h1>\n      <p> First Name:  " + _this.employee.firstName + "</p>\n      <p> Middle Name:  " + _this.employee.middleName + "</p>\n      <p> Last Name:  " + _this.employee.lastName + "</p>\n      <p> Employee ID:  " + _this.employee.employeeId + "</p>\n      <p> Email:  " + _this.employee.email + "</p>\n      <p> Employee Type:  " + _this.employee.employeeType + "</p>\n      <p> Date of Hire:  " + _this.employee.dateOfHire + "</p>\n      <p> Designation:  " + _this.employee.designation + "</p>\n      <p> Department:  " + _this.employee.department + "</p>\n      <p> Status:  " + _this.employee.status + "</p>\n      ";
-            _this.emailService.sendEmail(candidateEmail, message, function (err, data) {
-                if (err)
-                    console.log(err, err.stack); // an error occurred
-                else
-                    console.log(data);
+            _this.emailService.sendEmail(candidateEmail, message).subscribe(function (res) {
+                console.log(res);
             });
             _this.employee = {
                 firstName: '',
@@ -1116,23 +1123,17 @@ var CandidateDetailsComponent = /** @class */ (function () {
                 console.log(res);
                 _this.spinner.hide();
                 message += "\n        <br>\n        <p><strong>Please click this button to complete details:</strong></p>\n        <a href=\"" + _this.domain + "/missing-requirements?uid=" + res.uid + "\" style=\"color: #fff;\n        background-color: #2e59d9;\n        border-color: #2653d4; display: inline-block;\n        font-weight: 400; text-align: center;\n        vertical-align: middle;border: 1px solid transparent;\n        padding: .375rem .75rem;\n        font-size: 1rem;\n        line-height: 1.5;\n        border-radius: .35rem;\n        text-decoration: none;\">Complete Now</a>\n      ";
-                _this.emailService.sendEmail(candidateEmail, message, function (err, data) {
-                    if (err)
-                        console.log(err, err.stack); // an error occurred
-                    else
-                        console.log(data);
+                _this.emailService.sendEmail(candidateEmail, message).subscribe(function (res) {
+                    console.log(res);
                 });
             });
         }
         else {
             message += "\n    <br>\n    <p><strong>Please click this button to complete details:</strong></p>\n    <a href=\"" + this.domain + "/missing-requirements?uid=" + this.candidate.uid + "\" style=\"color: #fff;\n    background-color: #2e59d9;\n    border-color: #2653d4; display: inline-block;\n    font-weight: 400; text-align: center;\n    vertical-align: middle;border: 1px solid transparent;\n    padding: .375rem .75rem;\n    font-size: 1rem;\n    line-height: 1.5;\n    border-radius: .35rem;\n    text-decoration: none;\">Complete Now</a>\n  ";
-            this.emailService.sendEmail(candidateEmail, message, function (err, data) {
-                if (err)
-                    console.log(err, err.stack); // an error occurred
-                else
-                    console.log(data);
+            this.emailService.sendEmail(candidateEmail, message).subscribe(function (res) {
+                console.log(res);
+                _this.spinner.hide();
             });
-            this.spinner.hide();
         }
         this.toastr.success(undefined, 'Email Sent', {
             timeOut: 2000,
@@ -1375,6 +1376,7 @@ var AddJobopeningComponent = /** @class */ (function () {
         this.fields = [
             { text: 'Name', isChecked: true, isDefault: true, isRequired: true, type: 'text', value: '' },
             { text: 'Email', isChecked: true, isDefault: true, isRequired: true, type: 'text', value: '' },
+            { text: 'Phone', isChecked: true, isDefault: true, isRequired: true, type: 'text', value: '' },
             { text: 'Upload CV', isChecked: true, isDefault: true, isRequired: true, type: 'file', value: '' },
             { text: 'Upload Photo', isChecked: false, isRequired: false, type: 'file', value: '' },
             { text: 'Cover Letter', isChecked: false, isRequired: false, type: 'textArea', value: '' },
@@ -1384,7 +1386,6 @@ var AddJobopeningComponent = /** @class */ (function () {
             { text: 'Marital Status', isChecked: false, isRequired: false, type: 'text', value: '' },
             { text: 'Hobbies', isChecked: false, isRequired: false, type: 'textArea', value: '' },
             { text: 'Address', isChecked: false, isRequired: false, type: 'textArea', value: '' },
-            { text: 'Phone', isChecked: false, isRequired: false, type: 'text', value: '' },
             { text: 'Date of Birth', isChecked: false, isRequired: false, type: 'text', value: '' },
             { text: 'Gender', isChecked: false, isRequired: false, type: 'text', value: '' },
             { text: 'Driving License', isChecked: false, isRequired: false, type: 'file', value: '' },
@@ -1427,7 +1428,7 @@ var AddJobopeningComponent = /** @class */ (function () {
             if (Object.keys(params).length) {
                 _this.isActionUpdate = true;
                 _this.job = {
-                    opening_description: _this.job.opening_description,
+                    opening_description: params.opening_description,
                     basic_information: _this.parseJson(params.basic_information),
                     hiring_workflow: _this.parseJson(params.hiring_workflow),
                     job_description: _this.parseJson(params.job_description),
@@ -1529,6 +1530,9 @@ var AddJobopeningComponent = /** @class */ (function () {
                 return [2 /*return*/];
             });
         });
+    };
+    AddJobopeningComponent.prototype.removeField = function (index) {
+        this.fields.splice(index, 1);
     };
     AddJobopeningComponent.prototype.finish = function () {
         var _this = this;
@@ -1718,6 +1722,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var src_app_services_email_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/email.service */ "./src/app/services/email.service.ts");
 /* harmony import */ var src_environments_env__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/env */ "./src/environments/env.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
 
 
 
@@ -1727,17 +1733,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(DatabaseService, spinner, toastr, emailService) {
+    function HomeComponent(DatabaseService, spinner, toastr, emailService, formBuilder) {
         var _this = this;
         this.DatabaseService = DatabaseService;
         this.spinner = spinner;
         this.toastr = toastr;
         this.emailService = emailService;
+        this.formBuilder = formBuilder;
         this.fileServer = src_environments_env__WEBPACK_IMPORTED_MODULE_7__["environment"].fileServer;
         this.jobOpenings = [];
         this.origJobOpenings = [];
         this.fields = [];
         this.searchVal = '';
+        this.submitted = false;
         this.spinner.show();
         this.DatabaseService.connectSocketIo();
         this.DatabaseService.getUserConnected(function (data) {
@@ -1787,58 +1795,72 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.applyNow = function () {
         var _this = this;
-        this.spinner.show();
-        var fileList = [];
-        this.fields.forEach(function (el) {
-            if (el.type == 'file') {
-                var fileEl = document.getElementById(_this.removeSpaces(el.text));
-                console.log(fileEl.files);
-                fileList = _this.toArray(fileList).concat(_this.toArray(fileEl.files));
-            }
-        });
-        this.DatabaseService.numberFileToUpload = fileList.length;
-        console.log(fileList, this.DatabaseService.numberFileToUpload);
-        var candidate = {
-            details: this.fields,
-            job_opening_id: this.jobOpening.id,
-            job_title: this.parseJson(this.jobOpening.job_description).position_title,
-            stage: this.parseJson(this.jobOpening.hiring_workflow).stages[0].text
-        };
-        console.log('applyNow', candidate);
-        // this.DatabaseService.addCandidate(candidate, (res) => {
-        // console.log(res);
-        // })
-        this.DatabaseService.uploadFile(fileList, candidate).subscribe(function (response) {
-            console.log('response received is ', response);
-            var message = "<h1 style=\"color:#5a5c69;\">You applied for postion: <span style=\"color:#4e73df;\">" + _this.parseJson(_this.jobOpening.job_description).position_title + " </span></h1>";
-            response.details.forEach(function (element) {
-                if (element.type == 'file') {
-                    message += "<p style=\"color:#5a5c69;\">" + element.text + ":  <a style=\"color:#15c;\" href=\"" + _this.fileServer + "/" + element.value.replace('\\', '/') + "\" >" + (element.value ? _this.fileServer + '/' + element.value : '') + "</a></p>";
-                }
-                else {
-                    message += "<p style=\"color:#5a5c69;\">" + element.text + ":  " + element.value + "</p>";
+        this.submitted = true;
+        console.log(this.registerForm.invalid);
+        if (!this.registerForm.invalid) {
+            $('#applyNowModal').modal('hide');
+            this.spinner.show();
+            var fileList_1 = [];
+            this.fields.forEach(function (el) {
+                if (el.type == 'file') {
+                    var fileEl = document.getElementById(_this.removeSpaces(el.text));
+                    console.log(fileEl.files);
+                    fileList_1 = _this.toArray(fileList_1).concat(_this.toArray(fileEl.files));
                 }
             });
-            var applicantEmail = _this.fields[1].value;
-            _this.emailService.sendEmail(applicantEmail, message, function (err, data) {
-                if (err)
-                    console.log(err, err.stack); // an error occurred
-                else
-                    console.log(data);
-                _this.spinner.hide();
-                _this.toastr.success(undefined, 'Application Submitted', {
-                    timeOut: 2000,
-                    closeButton: true,
-                    positionClass: 'toast-top-full-width'
+            this.DatabaseService.numberFileToUpload = fileList_1.length;
+            console.log(fileList_1, this.DatabaseService.numberFileToUpload);
+            var candidate = {
+                details: this.fields,
+                job_opening_id: this.jobOpening.id,
+                job_title: this.parseJson(this.jobOpening.job_description).position_title,
+                stage: this.parseJson(this.jobOpening.hiring_workflow).stages[0].text
+            };
+            console.log('applyNow', candidate);
+            // this.DatabaseService.addCandidate(candidate, (res) => {
+            // console.log(res);
+            // })
+            this.DatabaseService.uploadFile(fileList_1, candidate).subscribe(function (response) {
+                console.log('response received is ', response);
+                var message = "<h1 style=\"color:#5a5c69;\">You applied for postion: <span style=\"color:#4e73df;\">" + _this.parseJson(_this.jobOpening.job_description).position_title + " </span></h1>";
+                response.details.forEach(function (element) {
+                    if (element.type == 'file') {
+                        message += "<p style=\"color:#5a5c69;\">" + element.text + ":  <a style=\"color:#15c;\" href=\"" + _this.fileServer + "/" + element.value.replace('\\', '/') + "\" >" + (element.value ? _this.fileServer + '/' + element.value : '') + "</a></p>";
+                    }
+                    else {
+                        message += "<p style=\"color:#5a5c69;\">" + element.text + ":  " + element.value + "</p>";
+                    }
+                });
+                var applicantEmail = _this.fields[1].value;
+                _this.emailService.sendEmail(applicantEmail, message).subscribe(function (res) {
+                    _this.spinner.hide();
+                    _this.toastr.success(undefined, 'Application Submitted', {
+                        timeOut: 2000,
+                        closeButton: true,
+                        positionClass: 'toast-top-full-width'
+                    });
                 });
             });
-        });
+        }
     };
     HomeComponent.prototype.doApplyNow = function (jobOpening) {
+        var _this = this;
         this.jobOpening = jobOpening;
         this.fields = this.parseJson(jobOpening.basic_information).fields;
+        var validation = {};
+        this.fields.forEach(function (element) {
+            validation[_this.removeSpaces(element.text)] = ['', element.isRequired ? _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required : _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].nullValidator];
+        });
+        console.log(validation);
+        this.registerForm = this.formBuilder.group(validation);
+        this.submitted = false;
         console.log(this.jobOpening);
     };
+    Object.defineProperty(HomeComponent.prototype, "f", {
+        get: function () { return this.registerForm.controls; },
+        enumerable: true,
+        configurable: true
+    });
     HomeComponent.prototype.ngOnInit = function () {
     };
     HomeComponent.prototype.ngOnDestroy = function () {
@@ -1874,7 +1896,8 @@ var HomeComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_database_service__WEBPACK_IMPORTED_MODULE_2__["DatabaseService"],
             ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"],
-            src_app_services_email_service__WEBPACK_IMPORTED_MODULE_6__["EmailService"]])
+            src_app_services_email_service__WEBPACK_IMPORTED_MODULE_6__["EmailService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormBuilder"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -2004,11 +2027,7 @@ var MissingRequirmentsComponent = /** @class */ (function () {
                 }
             });
             var applicantEmail = _this.completedFields[1].value;
-            _this.emailService.sendEmail(applicantEmail, message, function (err, data) {
-                if (err)
-                    console.log(err, err.stack); // an error occurred
-                else
-                    console.log(data);
+            _this.emailService.sendEmail(applicantEmail, message).subscribe(function (res) {
                 _this.spinner.hide();
                 _this.toastr.success(undefined, 'Form Submitted', {
                     timeOut: 2000,
@@ -2849,6 +2868,174 @@ var QuestionsetsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/reports/reports.component.scss":
+/*!***********************************************************!*\
+  !*** ./src/app/components/reports/reports.component.scss ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".cursor-pointer {\n  cursor: pointer;\n}\n\nul li a {\n  color: #4e73df;\n  text-decoration: none;\n  background-color: transparent;\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9yZXBvcnRzL0M6XFxVc2Vyc1xcdmluY2VcXGFuZ3VsYXItcHJvamVjdHNcXHJlY3J1aXRtZW50L3NyY1xcYXBwXFxjb21wb25lbnRzXFxyZXBvcnRzXFxyZXBvcnRzLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL3JlcG9ydHMvcmVwb3J0cy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGVBQUE7QUNDSjs7QURHUTtFQUNJLGNBQUE7RUFDQSxxQkFBQTtFQUNBLDZCQUFBO0VBQ0EsZUFBQTtBQ0FaIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9yZXBvcnRzL3JlcG9ydHMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY3Vyc29yLXBvaW50ZXJ7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxudWx7XHJcbiAgICBsaXtcclxuICAgICAgICBhe1xyXG4gICAgICAgICAgICBjb2xvcjogIzRlNzNkZjtcclxuICAgICAgICAgICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG4gICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcclxuICAgICAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxufSIsIi5jdXJzb3ItcG9pbnRlciB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxudWwgbGkgYSB7XG4gIGNvbG9yOiAjNGU3M2RmO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xuICBjdXJzb3I6IHBvaW50ZXI7XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/components/reports/reports.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/components/reports/reports.component.ts ***!
+  \*********************************************************/
+/*! exports provided: ReportsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportsComponent", function() { return ReportsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angular_datatables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angular-datatables */ "./node_modules/angular-datatables/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var src_app_services_database_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/database.service */ "./src/app/services/database.service.ts");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var src_app_services_csv_generator_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/csv-generator.service */ "./src/app/services/csv-generator.service.ts");
+
+
+
+
+
+
+
+
+var ReportsComponent = /** @class */ (function () {
+    function ReportsComponent(databaseService, spinner, csvService) {
+        this.databaseService = databaseService;
+        this.spinner = spinner;
+        this.csvService = csvService;
+        this.dtOptions = {};
+        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
+        this.jobOpenings = [];
+        this.candidates = [];
+        this.stages = [];
+        this.currentTable = 'Opening Report';
+    }
+    ReportsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.spinner.show();
+        this.databaseService.connectSocketIo();
+        this.databaseService.getInitialJobOpenings(function (jobOpenings) {
+            console.log(jobOpenings);
+            _this.jobOpenings = jobOpenings;
+        });
+        this.databaseService.getInitialCandidates(function (candidates) {
+            console.log(candidates);
+            _this.candidates = candidates;
+        });
+        this.databaseService.getAllStages(function (stages) {
+            console.log(stages);
+            _this.stages = stages;
+            _this.dtTrigger.next();
+            _this.spinner.hide();
+        });
+    };
+    ReportsComponent.prototype.parseJson = function (string) {
+        return JSON.parse(string.replace(/\\/g, '\\\\'));
+    };
+    ReportsComponent.prototype.formatDate = function (timestamp) {
+        return moment__WEBPACK_IMPORTED_MODULE_6__(timestamp).format('YYYY-MM-DD');
+    };
+    ReportsComponent.prototype.fromNow = function (timestamp) {
+        return moment__WEBPACK_IMPORTED_MODULE_6__(timestamp).fromNow();
+    };
+    ReportsComponent.prototype.downloadCv = function () {
+        console.log('download');
+    };
+    ReportsComponent.prototype.fixName = function (filename) {
+        var split = filename.split('fakepath\\');
+        return split[1];
+    };
+    ReportsComponent.prototype.getTotalCandidate = function (jobOpeningId) {
+        return this.candidates.filter(function (element) { return element.job_opening_id == jobOpeningId; }).length;
+    };
+    ReportsComponent.prototype.getTotalCandidateByStage = function (stage, jobOpeningId) {
+        var candidates = this.candidates.filter(function (element) { return element.job_opening_id == jobOpeningId; });
+        return candidates.filter(function (element) { return element.stage == stage; }).length;
+    };
+    ReportsComponent.prototype.downloadCsv = function () {
+        var _this = this;
+        if (this.currentTable == 'Opening Report') {
+            var filename = 'Job_opening_report.csv';
+            var columnNames_1 = ['Job Opening', 'Created', 'Candidates'];
+            this.stages.forEach(function (element) { return columnNames_1.push(element.stage); });
+            var data_1 = [];
+            data_1.push(columnNames_1);
+            this.jobOpenings.forEach(function (jobOpening) {
+                var row = [
+                    _this.parseJson(jobOpening.job_description).position_title,
+                    _this.formatDate(jobOpening.created_on),
+                    _this.getTotalCandidate(jobOpening.id),
+                ];
+                _this.stages.forEach(function (stage) {
+                    row.push(_this.getTotalCandidateByStage(stage.stage, jobOpening.id));
+                });
+                data_1.push(row);
+            });
+            console.log(data_1);
+            this.csvService.generateCsv(filename, data_1);
+        }
+        else {
+            var filename = 'Candidate_report.csv';
+            var columnNames = ['Candidate Name', 'Email', 'Phone', 'Apply Date', 'Status'];
+            var data_2 = [];
+            data_2.push(columnNames);
+            this.candidates.forEach(function (candidate) {
+                var row = [
+                    _this.parseJson(candidate.details)[0].value,
+                    _this.parseJson(candidate.details)[1].value,
+                    _this.parseJson(candidate.details)[2].value,
+                    _this.formatDate(candidate.created_on),
+                    candidate.status
+                ];
+                data_2.push(row);
+            });
+            console.log(data_2);
+            this.csvService.generateCsv(filename, data_2);
+        }
+    };
+    ReportsComponent.prototype.changeTable = function (table) {
+        this.currentTable = table;
+        this.rerender();
+    };
+    ReportsComponent.prototype.rerender = function () {
+        var _this = this;
+        console.log('rerender');
+        this.dtElement.dtInstance.then(function (dtInstance) {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+            _this.dtTrigger.next();
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(angular_datatables__WEBPACK_IMPORTED_MODULE_2__["DataTableDirective"], { static: false }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", angular_datatables__WEBPACK_IMPORTED_MODULE_2__["DataTableDirective"])
+    ], ReportsComponent.prototype, "dtElement", void 0);
+    ReportsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-reports',
+            template: __webpack_require__(/*! raw-loader!./reports.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/reports/reports.component.html"),
+            styles: [__webpack_require__(/*! ./reports.component.scss */ "./src/app/components/reports/reports.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"],
+            ngx_spinner__WEBPACK_IMPORTED_MODULE_5__["NgxSpinnerService"],
+            src_app_services_csv_generator_service__WEBPACK_IMPORTED_MODULE_7__["CsvGeneratorService"]])
+    ], ReportsComponent);
+    return ReportsComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/sidebar/sidebar.component.scss":
 /*!***********************************************************!*\
   !*** ./src/app/components/sidebar/sidebar.component.scss ***!
@@ -2896,6 +3083,75 @@ var SidebarComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_database_service__WEBPACK_IMPORTED_MODULE_2__["DatabaseService"]])
     ], SidebarComponent);
     return SidebarComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/csv-generator.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/services/csv-generator.service.ts ***!
+  \***************************************************/
+/*! exports provided: CsvGeneratorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CsvGeneratorService", function() { return CsvGeneratorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var CsvGeneratorService = /** @class */ (function () {
+    function CsvGeneratorService() {
+    }
+    CsvGeneratorService.prototype.generateCsv = function (fileName, rows) {
+        var csv = '';
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            for (var j = 0; j < row.length; j++) {
+                var val = row[j] === null ? '' : row[j].toString();
+                val = val.replace(/\t/gi, " ");
+                if (j > 0)
+                    csv += '\t';
+                csv += val;
+            }
+            csv += '\n';
+        }
+        // for UTF-16
+        var cCode, bArr = [];
+        bArr.push(255, 254);
+        for (var i = 0; i < csv.length; ++i) {
+            cCode = csv.charCodeAt(i);
+            bArr.push(cCode & 0xff);
+            bArr.push(cCode / 256 >>> 0);
+        }
+        var blob = new Blob([new Uint8Array(bArr)], { type: 'text/csv;charset=UTF-16LE;' });
+        if (navigator.msSaveBlob) {
+            navigator.msSaveBlob(blob, fileName);
+        }
+        else {
+            var link = document.createElement("a");
+            if (link.download !== undefined) {
+                var url = window.URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", fileName);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            }
+        }
+    };
+    CsvGeneratorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], CsvGeneratorService);
+    return CsvGeneratorService;
 }());
 
 
@@ -3149,49 +3405,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailService", function() { return EmailService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var src_environments_env__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/env */ "./src/environments/env.ts");
 
 
+
+
+// declare var AWS;
 var EmailService = /** @class */ (function () {
-    function EmailService() {
+    function EmailService(http) {
+        this.http = http;
+        // ses;
+        this.fileUploadServer = src_environments_env__WEBPACK_IMPORTED_MODULE_3__["environment"].fileUploadServer;
     }
-    EmailService.prototype.loadConfig = function () {
-        // Configure the credentials provider to use your identity pool
-        AWS.config.region = 'us-east-1'; // Region
-        AWS.config.update({
-            accessKeyId: 'AKIAYIGKVFHSDACCJS57',
-            secretAccessKey: 'b2J9FpN3O1Ij4Kbu5Q2gC+Tv4/AX4mKr8ahBjavU',
-            region: 'us-east-1'
-        });
-        this.ses = new AWS.SES();
-    };
-    EmailService.prototype.sendEmail = function (email, message, callback) {
-        var params = {
-            Destination: {
-                ToAddresses: [
-                    email
-                ]
-            },
-            Message: {
-                Body: {
-                    Html: {
-                        Charset: "UTF-8",
-                        Data: message
-                    },
-                },
-                Subject: {
-                    Charset: "UTF-8",
-                    Data: "Recruitment"
-                }
-            },
-            Source: "vcdizon04@gmail.com",
+    // loadConfig() {
+    // // Configure the credentials provider to use your identity pool
+    // AWS.config.region = 'us-east-1'; // Region
+    // AWS.config.update({
+    //    accessKeyId: 'AKIAYIGKVFHSDACCJS57',
+    //    secretAccessKey: 'b2J9FpN3O1Ij4Kbu5Q2gC+Tv4/AX4mKr8ahBjavU',
+    //    region: 'us-east-1'
+    //  });
+    // this.ses = new AWS.SES();
+    // }
+    // sendEmail(email, message, callback: Function) {
+    //   const params = {
+    //     Destination: {
+    //      ToAddresses: [
+    //         email
+    //      ]
+    //     }, 
+    //     Message: {
+    //      Body: {
+    //       Html: {
+    //        Charset: "UTF-8", 
+    //        Data: message
+    //       }, 
+    //      }, 
+    //      Subject: {
+    //       Charset: "UTF-8", 
+    //       Data: "Recruitment"
+    //      }
+    //     }, 
+    //     Source: "vcdizon04@gmail.com", 
+    //    };
+    //    this.ses.sendEmail(params, callback);
+    // }
+    EmailService.prototype.sendEmail = function (email, message) {
+        var body = {
+            email: email,
+            message: message
         };
-        this.ses.sendEmail(params, callback);
+        return this.http.post(this.fileUploadServer + "/mailer", body);
     };
     EmailService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], EmailService);
     return EmailService;
 }());
