@@ -81,6 +81,7 @@ app.post('/api/upload/missing', multipartMiddleware, async function(req, res) {
 });
 
 app.get('/mailer', function(req, res) {
+    console.log(req.body);
     var transporter = nodemailer.createTransport({
         host: 'localhost',
         port: 25,
