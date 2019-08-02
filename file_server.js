@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post('/api/upload', multipartMiddleware, async (req, res) => {
+app.post('/api/upload', multipartMiddleware, async function(req, res) {
     const files = req.files.uploads;
     const data = JSON.parse(req.body.data);
     const fields = data.details;
@@ -55,7 +55,7 @@ app.post('/api/upload', multipartMiddleware, async (req, res) => {
 
 });
 
-app.post('/api/upload/missing', multipartMiddleware, async (req, res) => {
+app.post('/api/upload/missing', multipartMiddleware, async function(req, res) {
     const files = req.files.uploads;
     const data = JSON.parse(req.body.data);
     const fields = data.missing_fields;
@@ -80,7 +80,7 @@ app.post('/api/upload/missing', multipartMiddleware, async (req, res) => {
 
 });
 
-app.get('/mailer', (req, res) => {
+app.get('/mailer', function(req, res) {
     var transporter = nodemailer.createTransport({
         host: 'localhost',
         port: 25,
