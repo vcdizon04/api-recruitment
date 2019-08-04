@@ -240,6 +240,17 @@ io.sockets.on('connection', function(socket){
         })
     })
 
+    
+    socket.on('get-job-stages', function(id, res) {
+        db.query(`SELECT hiring_workflow FROM job_openings WHERE id = ${id}`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            res(results);
+
+        })
+    })
+
     socket.on('get-departments', function(id, res) {
         db.query(`SELECT * FROM departments`, (err, results) => {
             if(err) {
