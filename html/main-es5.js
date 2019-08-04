@@ -3495,7 +3495,7 @@ var EmailService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 var environment = {
-    domain: "http://85.187.132.75:4200",
+    domain: "http://aspiremanning.com",
     apiUrl: "http://85.187.132.75:4000/",
     fileServer: "http://85.187.132.75:9000",
     fileUploadServer: "http://85.187.132.75:8000"
