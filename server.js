@@ -328,6 +328,19 @@ io.sockets.on('connection', function(socket){
         })
     })
 
+    socket.on('edit-employee', function(data, res){
+ 
+        db.query(`UPDATE employee SET status = '${data.status}', name = '${data.name}', designation = '${data.designation}', department = '${data.department}', employment_type = '${data.employeeType}', password = '${data.password}', level = ${data.level} WHERE employee.id = ${data.id}`, (err, results) => {
+            if(err) {
+                console.log(err)
+            }
+            console.log(results)
+
+            res(results);
+
+        })
+    })
+
     socket.on('add-candidate', function(data, res){
         // New note added, push to all sockets and insert into db
         // notes.push(data)
@@ -347,7 +360,22 @@ io.sockets.on('connection', function(socket){
             io.sockets.emit('add-candidate',data);
 
         })
-    })
+    })  
+
+        socket.on('update-asignor-candidate', function(data, res){
+        
+            console.log(data);
+
+
+            db.query(`UPDATE candidates  SET asignor = ${data.asignor}, asignor_name = '${data.asignorName}' WHERE id = ${data.id}`, (err, results) => {
+                if(err) {
+                    console.log(err)
+                }
+                console.log(results)
+                res('candidate Updated');
+
+            })
+        })
 
       socket.on('update-interviews-candidate', function(data, res){
     
@@ -476,14 +504,14 @@ io.sockets.on('connection', function(socket){
         })
     })
 
-    socket.on('delete-candidate', function(id){
+    socket.on('delete-candidate', function(id,res){
         console.log(`${id} Deleted`);
         db.query(`DELETE FROM candidates WHERE id = ${id}`, (err, results) => {
             if(err) {
                 console.log(err)
             }
             console.log(results)
-            res('Candidate deleted');
+            res(results);
             io.sockets.emit('delete-candidate',id);
         })
     })
