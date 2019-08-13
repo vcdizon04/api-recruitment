@@ -72,7 +72,7 @@ var mysql = require('mysql')
 const SocketIOFile = require('socket.io-file');
 const uuidv4 = require('uuid/v4');
 // Let’s make node/socketio listen on port 4000
-var io = require('socket.io')(server, {
+var io = require('socket.io')({
     secure: true,
     rejectUnauthorized: false
   }).listen(4000);
