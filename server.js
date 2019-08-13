@@ -90,7 +90,7 @@ var mysql = require('mysql')
 const SocketIOFile = require('socket.io-file');
 const uuidv4 = require('uuid/v4');
 // Let’s make node/socketio listen on port 4000
-var io = require('socket.io').listen(app, credentials);
+var io = require('socket.io').listen(httpsServer, credentials);
 console.log('listening localhost:4000');
 // Define our db creds
 var db = mysql.createConnection({
