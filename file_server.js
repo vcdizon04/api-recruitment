@@ -1,4 +1,6 @@
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const app = express();
 const cors = require('cors');
 const port = 8000;
@@ -6,6 +8,17 @@ const bodyParser = require("body-parser");
 var mysql = require('mysql');
 const multipart = require('connect-multiparty');
 const nodemailer = require('nodemailer');
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/aspiremanning.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/aspiremanning.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/aspiremanning.com/chain.pem', 'utf8');
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+ };
+
+
 const multipartMiddleware = multipart({
     uploadDir: './uploads',
     
@@ -113,4 +126,7 @@ app.post('/mailer', function(req, res) {
       })
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const httpsServer = https.createServer(credentials, app);
+httpsServer.listen(port, () => {
+	console.log(`HTTPS Server running on port ${port}`);
+});

@@ -41,51 +41,51 @@ const mimeType = {
 	console.log('HTTPS Server running on port 443');
 });
 
-  http.createServer(function (req, res) {
-    console.log(`${req.method} ${req.url}`);
-  
-    // parse URL
-    const parsedUrl = url.parse(req.url);
-  
-    // extract URL path
-    // Avoid https://en.wikipedia.org/wiki/Directory_traversal_attack
-    // e.g curl --path-as-is http://localhost:9000/../fileInDanger.txt
-    // by limiting the path to current directory only
-    const sanitizePath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, '');
-    let pathname = path.join(__dirname, sanitizePath);
-  
-    fs.exists(pathname, function (exist) {
-      if(!exist) {
-        // if the file is not found, return 404
-        res.statusCode = 404;
-        res.end(`File ${pathname} not found!`);
-        return;
-      }
-  
-      // if is a directory, then look for index.html
-      if (fs.statSync(pathname).isDirectory()) {
-        pathname += '/index.html';
-      }
-  
-      // read file from file system
-      fs.readFile(pathname, function(err, data){
-        if(err){
-          res.statusCode = 500;
-          res.end(`Error getting the file: ${err}.`);
-        } else {
-          // based on the URL path, extract the file extention. e.g. .js, .doc, ...
-          const ext = path.parse(pathname).ext;
-          // if the file is found, set Content-type and send data
-          res.setHeader('Content-type', mimeType[ext] || 'text/plain' );
-          res.end(data);
-        }
-      });
+httpsServer.createServer(function (req, res) {
+console.log(`${req.method} ${req.url}`);
+
+// parse URL
+const parsedUrl = url.parse(req.url);
+
+// extract URL path
+// Avoid https://en.wikipedia.org/wiki/Directory_traversal_attack
+// e.g curl --path-as-is http://localhost:9000/../fileInDanger.txt
+// by limiting the path to current directory only
+const sanitizePath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, '');
+let pathname = path.join(__dirname, sanitizePath);
+
+fs.exists(pathname, function (exist) {
+    if(!exist) {
+    // if the file is not found, return 404
+    res.statusCode = 404;
+    res.end(`File ${pathname} not found!`);
+    return;
+    }
+
+    // if is a directory, then look for index.html
+    if (fs.statSync(pathname).isDirectory()) {
+    pathname += '/index.html';
+    }
+
+    // read file from file system
+    fs.readFile(pathname, function(err, data){
+    if(err){
+        res.statusCode = 500;
+        res.end(`Error getting the file: ${err}.`);
+    } else {
+        // based on the URL path, extract the file extention. e.g. .js, .doc, ...
+        const ext = path.parse(pathname).ext;
+        // if the file is found, set Content-type and send data
+        res.setHeader('Content-type', mimeType[ext] || 'text/plain' );
+        res.end(data);
+    }
     });
+});
+
+
+}).listen(parseInt(port));
   
-  
-  }).listen(parseInt(port));
-  
-  console.log(`Server listening on port ${port}`);
+console.log(`Server listening on port ${port}`);
 var mysql = require('mysql')
 const SocketIOFile = require('socket.io-file');
 const uuidv4 = require('uuid/v4');
@@ -141,43 +141,6 @@ io.sockets.on('connection', function(socket){
         })
 
     // var count = 0;
-	var uploader = new SocketIOFile(socket, {
-		// uploadDir: {			// multiple directories
-		// 	music: 'data/music',
-		// 	document: 'data/document'
-		// },
-		uploadDir: 'data',							// simple directory
-		// accepts: ['audio/mpeg', 'audio/mp3'],		// chrome and some of browsers checking mp3 as 'audio/mp3', not 'audio/mpeg'
-		// maxFileSize: 4194304, 						// 4 MB. default is undefined(no limit)
-		chunkSize: 10240,							// default is 10240(1KB)
-		transmissionDelay: 0,						// delay of each transmission, higher value saves more cpu resources, lower upload speed. default is 0(no delay)
-		overwrite: true, 							// overwrite file if exists, default is true.
-		// rename: function(filename) {
-		// 	var split = filename.split('.');	// split filename by .(extension)
-		// 	var fname = split[0];	// filename without extension
-		// 	var ext = split[1];
-
-		// 	return `${fname}_${ uuidv4() }.${ext}`;
-		// }
-		// rename: 'MyMusic.pdf'
-	});
-	uploader.on('start', (fileInfo) => {
-		console.log('Start uploading');
-		console.log(fileInfo);
-	});
-	uploader.on('stream', (fileInfo) => {
-		console.log(`${fileInfo.wrote} / ${fileInfo.size} byte(s)`);
-	});
-	uploader.on('complete', (fileInfo) => {
-		console.log('Upload Complete.');
-		console.log(fileInfo);
-	});
-	uploader.on('error', (err) => {
-		console.log('Error!', err);
-	});
-	uploader.on('abort', (fileInfo) => {
-		console.log('Aborted: ', fileInfo);
-	});
     // Socket has connected, increase socket count
     socketCount++
     // Let all sockets know how many are connected
