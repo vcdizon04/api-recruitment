@@ -1,6 +1,8 @@
 const http = require('http');
+const https = require('https');
 const url = require('url');
 const fs = require('fs');
+const sys = require('sys');
 const path = require('path');
 // you can pass the parameter in the command line. e.g. node static_server.js 3000
 const port = process.argv[2] || 9000;
@@ -23,6 +25,22 @@ const mimeType = {
     '.eot': 'appliaction/vnd.ms-fontobject',
     '.ttf': 'aplication/font-sfnt'
   };
+
+  const privateKey = fs.readFileSync('/etc/letsencrypt/live/aspiremanning.com/privkey.pem', 'utf8');
+  const certificate = fs.readFileSync('/etc/letsencrypt/live/aspiremanning.com/cert.pem', 'utf8');
+  const ca = fs.readFileSync('/etc/letsencrypt/live/aspiremanning.com/chain.pem', 'utf8');
+
+  const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+ };
+ const httpsServer = https.createServer(credentials, app);
+
+ httpsServer.listen(4000, () => {
+	console.log('HTTPS Server running on port 443');
+});
+
   http.createServer(function (req, res) {
     console.log(`${req.method} ${req.url}`);
   
@@ -72,7 +90,7 @@ var mysql = require('mysql')
 const SocketIOFile = require('socket.io-file');
 const uuidv4 = require('uuid/v4');
 // Let’s make node/socketio listen on port 4000
-var io = require('socket.io').listen(4000);
+var io = require('socket.io').listen(app, credentials);
 console.log('listening localhost:4000');
 // Define our db creds
 var db = mysql.createConnection({
