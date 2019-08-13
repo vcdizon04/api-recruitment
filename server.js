@@ -35,7 +35,7 @@ const mimeType = {
 	cert: certificate,
 	ca: ca
  };
- const httpsServer = https.createServer(credentials, app);
+ const httpsServer = https.createServer(credentials);
 
  httpsServer.listen(4000, () => {
 	console.log('HTTPS Server running on port 443');
@@ -90,7 +90,7 @@ var mysql = require('mysql')
 const SocketIOFile = require('socket.io-file');
 const uuidv4 = require('uuid/v4');
 // Let’s make node/socketio listen on port 4000
-var io = require('socket.io').listen(httpsServer, credentials);
+var io = require('socket.io').listen(httpsServer,credentials);
 console.log('listening localhost:4000');
 // Define our db creds
 var db = mysql.createConnection({
