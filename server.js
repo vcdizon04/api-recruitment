@@ -339,7 +339,7 @@ io.sockets.on('connection', function(socket){
             console.log(results)
             res('Employee Added');
             data.id = results.insertId;
-            data.name = `${data.firstName} ${data.lastName}`,
+            data.name = data.name,
             data.employment_type = data.employeeType;
             io.sockets.emit('add-employee',data);
 
