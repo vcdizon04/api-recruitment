@@ -332,7 +332,7 @@ io.sockets.on('connection', function(socket){
 
         const dateNow = new Date().getTime();
         console.log(data, dateNow);
-        db.query(`INSERT INTO employee (id, created_on, status, name, designation, department, employment_type, details, email, level) VALUES (NULL, ${dateNow}, '${data.status}', '${data.name}', '${data.designation}', '${data.department}',  '${data.employeeType}', '${JSON.stringify(data.details)}', '${data.email}', 1)`, (err, results) => {
+        db.query(`INSERT INTO employee (id, created_on, status, name, designation, department, employment_type, details, email,password,level) VALUES (NULL, ${dateNow}, '${data.status}', '${data.name}', '${data.designation}', '${data.department}',  '${data.employeeType}', '${JSON.stringify(data.details)}', '${data.email}', '${data.password ? data.password : ''}', 1)`, (err, results) => {
             if(err) {
                 console.log(err)
             }
